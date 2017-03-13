@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import donghuns.dto.Customer;
+import donghun2.dto.Customer;
 
 
 public class DaoCustomer implements Dao<Customer> {

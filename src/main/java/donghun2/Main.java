@@ -1,4 +1,4 @@
-package donghuns;
+package donghun2;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import donghuns.view.SellInfoView;
+import donghuns2.view.SellInfoView;
 
 public class Main extends JFrame implements ActionListener {
 

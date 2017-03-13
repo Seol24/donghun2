@@ -1,4 +1,4 @@
-package donghuns.panel;
+package donghun2.panel;
 
 import java.awt.GridLayout;
 import java.util.Vector;
@@ -8,31 +8,35 @@ import javax.swing.JPanel;
 import erp_myframework.ComboPanel;
 import erp_myframework.TextFiledPanel;
 
-public class EmployeePanel extends JPanel {
+public class CustomerPanel extends JPanel {
 	private TextFiledPanel pCode;
 	private TextFiledPanel pName;
 	private ComboPanel pGrade;
 
-	
-	public EmployeePanel() {
+	/**
+	 * Create the panel.
+	 */
+	public CustomerPanel() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		pCode = new TextFiledPanel();
-		pCode.setTitle("사원코드");
+		pCode.setTitle("거래처코드");
 		add(pCode);
 		
 		pName = new TextFiledPanel();
-		pName.setTitle("사 원 명");
+		pName.setTitle("거래처명");
 		add(pName);
 		
 		Vector<String> list = new Vector<>();
-		list.add("A");
-		list.add("B");
-		list.add("C");
+		list.add("L");
+		list.add("M");
+		list.add("S");
+		
 		
 		pGrade = new ComboPanel();
-		pGrade.setTitle("사원등급");
+		pGrade.setTitle("거래처 등급");
 		pGrade.setcomboData(list);
+		
 		add(pGrade);
 
 	}

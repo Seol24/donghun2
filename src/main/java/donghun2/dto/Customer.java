@@ -1,4 +1,4 @@
-package donghuns.dto;
+package donghun2.dto;
 
 public class Customer {
 	private String code;

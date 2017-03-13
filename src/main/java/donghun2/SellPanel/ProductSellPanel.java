@@ -1,4 +1,4 @@
-package donghuns.SellPanel;
+package donghun2.SellPanel;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;

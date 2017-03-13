@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import donghuns.dto.SaleInfo;
+import donghun2.dto.SaleInfo;
 
 public class DaoSaleInfo implements Dao<SaleInfo> {
 

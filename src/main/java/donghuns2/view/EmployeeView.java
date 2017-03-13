@@ -1,4 +1,4 @@
-package donghuns.view;
+package donghuns2.view;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import donghuns.panel.EmployeePanel;
+import donghun2.panel.EmployeePanel;
 
 public class EmployeeView extends JFrame implements ActionListener {
 
