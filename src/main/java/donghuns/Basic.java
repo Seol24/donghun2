@@ -21,9 +21,6 @@ public class Basic extends JFrame implements ActionListener {
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
