@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import donghun2.dto.Customer;
 import donghun2.dto.Product;
 import donghuns2.jdbc.DBCon;
 
