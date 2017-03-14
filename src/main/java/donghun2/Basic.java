@@ -1,4 +1,4 @@
-package donghuns;
+package donghun2;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -10,9 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import donghuns.view.CustomerView;
-import donghuns.view.EmployeeView;
-import donghuns.view.ProductView;
+import donghuns2.view.CustomerView;
+import donghuns2.view.EmployeeView;
+import donghuns2.view.ProductView;
 
 public class Basic extends JFrame implements ActionListener {
 
@@ -21,9 +21,6 @@ public class Basic extends JFrame implements ActionListener {
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

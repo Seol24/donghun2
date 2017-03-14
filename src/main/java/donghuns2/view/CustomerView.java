@@ -1,4 +1,4 @@
-package donghuns.view;
+package donghuns2.view;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import donghuns.panel.CustomerPanel;
+import donghun2.panel.CustomerPanel;
 
 public class CustomerView extends JFrame {
 

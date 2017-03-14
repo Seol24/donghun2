@@ -1,4 +1,4 @@
-package donghuns.SellPanel;
+package donghun2.SellPanel;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;
@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 
-public class CustomerSellPanel3 extends JPanel implements ActionListener {
+public class EmployeeSellPanel extends JPanel implements ActionListener {
 	private JButton btnConfirm;
 	private TextFiledPanel pCode;
 	private TextFiledPanel pName;
@@ -18,11 +18,11 @@ public class CustomerSellPanel3 extends JPanel implements ActionListener {
 	/**
 	 * Create the panel.
 	 */
-	public CustomerSellPanel3() {
+	public EmployeeSellPanel() {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
 		pCode = new TextFiledPanel();
-		pCode.setTitle("거래처코드");
+		pCode.setTitle("사원코드");
 		add(pCode);
 		
 		JPanel pBtn = new JPanel();
@@ -34,11 +34,11 @@ public class CustomerSellPanel3 extends JPanel implements ActionListener {
 		pBtn.add(btnConfirm);
 		
 		pName = new TextFiledPanel();
-		pName.setTitle("거래처명");
+		pName.setTitle("사원명");
 		add(pName);
 		
 		pGrade = new TextFiledPanel();
-		pGrade.setTitle("거래처등급");
+		pGrade.setTitle("사원등급");
 		add(pGrade);
 
 	}

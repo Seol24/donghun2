@@ -1,4 +1,4 @@
-package donghuns.panel;
+package donghun2.panel;
 
 import javax.swing.JPanel;
 import java.awt.GridLayout;

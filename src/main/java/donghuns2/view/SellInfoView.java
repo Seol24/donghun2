@@ -1,4 +1,4 @@
-package donghuns.view;
+package donghuns2.view;
 
 import java.awt.EventQueue;
 
@@ -8,10 +8,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import donghuns.SellPanel.CustomerSellPanel3;
-import donghuns.SellPanel.EmployeeSellPanel;
-import donghuns.SellPanel.ProductSellPanel;
-import donghuns.panel.SellInfoPanel;
+import donghun2.SellPanel.CustomerSellPanel3;
+import donghun2.SellPanel.EmployeeSellPanel;
+import donghun2.SellPanel.ProductSellPanel;
+import donghun2.panel.SellInfoPanel;
 
 public class SellInfoView extends JFrame {
 
