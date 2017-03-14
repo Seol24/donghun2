@@ -44,5 +44,6 @@ public class DaoEmployee implements Dao<Employee> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	//화이팅
 	
 }
