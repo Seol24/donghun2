@@ -6,14 +6,11 @@ import java.awt.FlowLayout;
 import erp_myframework.TextFiledPanel;
 
 public class ProductPanel extends JPanel {
-	private TextFiledPanel pCode;
-	private TextFiledPanel pName;
-	private TextFiledPanel pSalePrice;
-	private TextFiledPanel pOrigiPrice;
+	public TextFiledPanel pCode;
+	public TextFiledPanel pName;
+	public TextFiledPanel pSalePrice;
+	public TextFiledPanel pOrigiPrice;
 
-	/**
-	 * Create the panel.
-	 */
 	public ProductPanel() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -34,5 +31,8 @@ public class ProductPanel extends JPanel {
 		add(pOrigiPrice);
 
 	}
+
+	
+	
 
 }
