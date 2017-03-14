@@ -4,11 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import donghun2.dto.Customer;
+
 public interface Dao<T> {
-	int insertItem(T item);
+	int replaceItem(T item);
 	Vector<T> selectItemByAll();
 	T getObject(ResultSet rs) throws SQLException;
 	T selectItemByNo(String code);
 	int updateItem(T item);
-	int deleteItem(String code);
+	
+	int deleteItem(T item);
 }

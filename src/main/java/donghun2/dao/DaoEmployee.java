@@ -4,13 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import donghun2.dto.Customer;
 import donghun2.dto.Employee;
 
 
 public class DaoEmployee implements Dao<Employee> {
 
 	@Override
-	public int insertItem(Employee item) {
+	public int replaceItem(Employee item) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -40,10 +41,12 @@ public class DaoEmployee implements Dao<Employee> {
 	}
 
 	@Override
-	public int deleteItem(String code) {
+	public int deleteItem(Employee item) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
 	//화이팅
 	
 }

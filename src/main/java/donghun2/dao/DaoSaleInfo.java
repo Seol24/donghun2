@@ -4,12 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import donghun2.dto.Customer;
 import donghun2.dto.SaleInfo;
 
 public class DaoSaleInfo implements Dao<SaleInfo> {
 
 	@Override
-	public int insertItem(SaleInfo item) {
+	public int replaceItem(SaleInfo item) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -39,9 +40,10 @@ public class DaoSaleInfo implements Dao<SaleInfo> {
 	}
 
 	@Override
-	public int deleteItem(String code) {
+	public int deleteItem(SaleInfo item) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 	
 }

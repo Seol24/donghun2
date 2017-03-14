@@ -1,10 +1,12 @@
 package donghun2.panel;
 
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.util.Vector;
 
 import javax.swing.JPanel;
 
+import donghun2.dto.Customer;
 import erp_myframework.ComboPanel;
 import erp_myframework.TextFiledPanel;
 
@@ -39,6 +41,36 @@ public class CustomerPanel extends JPanel {
 		
 		add(pGrade);
 
+	}
+	public Customer getObject(){
+		String code = pCode.getTfValue();
+		String name = pName.getTfValue();
+		String grade = (String) pGrade.getSelectItem();
+		return new Customer(code, name, grade);
+	}
+	
+	public void setObject(Customer item){
+		pCode.setTfValue(item.getCode());
+		pName.setTfValue(item.getName());
+		pGrade.setSelectedItem(item.getGrade());
+	}
+	
+	public void clear(){
+		pCode.setTfValue("");
+		pName.setTfValue("");
+		pGrade.setSelectedItem("");
+	}
+	public boolean isEmpty(){
+		boolean result = false;
+		for(Component c : getComponents()){
+			if(c instanceof TextFiledPanel){
+				TextFiledPanel tfp =(TextFiledPanel)c;
+				if(tfp.isEmpty()){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }

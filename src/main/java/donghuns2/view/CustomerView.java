@@ -6,16 +6,24 @@ import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import donghun2.dao.DaoCustomer;
+import donghun2.dto.Customer;
 import donghun2.panel.CustomerPanel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class CustomerView extends JFrame {
+public class CustomerView extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private CustomerPanel pCustomer;
 	private JPanel pbtn;
+	private JButton btnSave;
+	private JButton btnDele;
+	
 
 	/**
 	 * Launch the application.
@@ -51,14 +59,38 @@ public class CustomerView extends JFrame {
 		contentPane.add(pbtn);
 		pbtn.setLayout(new GridLayout(0, 3, 0, 0));
 		
-		JButton btnSave = new JButton("저장");
+		btnSave = new JButton("저장");
+		btnSave.addActionListener(this);
 		pbtn.add(btnSave);
 		
-		JButton btnDele = new JButton("삭제");
+		btnDele = new JButton("삭제");
+		btnDele.addActionListener(this);
 		pbtn.add(btnDele);
 		
 		JButton btnSearch = new JButton("검색");
 		pbtn.add(btnSearch);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnDele) {
+			actionPerformedBtnDele(e);
+		}
+		if (e.getSource() == btnSave) {
+			actionPerformedBtnSave(e);
+		}
+	}
+	protected void actionPerformedBtnSave(ActionEvent e) {
+		if(pCustomer.isEmpty()){
+			JOptionPane.showMessageDialog(null, "빈칸이 있습니다.");
+		}else{
+			DaoCustomer.getInstance().replaceItem(pCustomer.getObject());
+			JOptionPane.showMessageDialog(null, "저장되었습니다.");
+		}
+		
+		
+	}
+	protected void actionPerformedBtnDele(ActionEvent e) {
+		DaoCustomer.getInstance().deleteItem(pCustomer.getObject());
+		
+	}
 }
