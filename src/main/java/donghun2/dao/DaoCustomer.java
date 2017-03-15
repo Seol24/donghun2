@@ -54,18 +54,43 @@ public class DaoCustomer implements Dao<Customer> {
 
 	@Override
 	public Vector<Customer> selectItemByAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select code, name, grade from customer";
+		DBCon dbCon = new DBCon();
+		Connection connection = dbCon.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Vector<Customer> list = new Vector<>();
+		try {
+			pstmt = connection.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				list.add(getObject(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			
+			try {
+				pstmt.close();
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			dbCon.close();
+		}
+		return list;
 	}
 
 	@Override
 	public Customer getObject(ResultSet rs) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		String code = rs.getString("code");
+		String name = rs.getString("name");
+		String grade = rs.getString("grade");
+		return new Customer(code, name, grade);
 	}
 
 	@Override
-	public Customer selectItemByNo(String code) {
+	public Customer selectItemByNo(Customer code) {
 		// TODO Auto-generated method stub
 		return null;
 	}

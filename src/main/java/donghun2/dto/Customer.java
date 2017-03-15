@@ -63,7 +63,9 @@ public class Customer {
 			return false;
 		return true;
 	}
-	
+	public String[] toArray() {
+		return new String[] {code, name, grade};
+	}
 	
 }
 

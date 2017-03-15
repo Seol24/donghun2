@@ -15,6 +15,7 @@ import donghun2.dto.Customer;
 import donghun2.panel.CustomerPanel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import donghun2.table.CustomerTable;
 
 public class CustomerView extends JFrame implements ActionListener {
 
@@ -23,6 +24,7 @@ public class CustomerView extends JFrame implements ActionListener {
 	private JPanel pbtn;
 	private JButton btnSave;
 	private JButton btnDele;
+	private CustomerTable pTable;
 	
 
 	/**
@@ -69,6 +71,10 @@ public class CustomerView extends JFrame implements ActionListener {
 		
 		JButton btnSearch = new JButton("검색");
 		pbtn.add(btnSearch);
+		
+		pTable = new CustomerTable();
+		contentPane.add(pTable);
+		pTable.setVisible(true);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -90,7 +96,11 @@ public class CustomerView extends JFrame implements ActionListener {
 		
 	}
 	protected void actionPerformedBtnDele(ActionEvent e) {
-		DaoCustomer.getInstance().deleteItem(pCustomer.getObject());
-		
+		int res = DaoCustomer.getInstance().deleteItem(pCustomer.getObject());
+		if(res==0){
+			JOptionPane.showMessageDialog(null, "삭제안댐");
+		}else{
+			JOptionPane.showMessageDialog(null, "삭제댐");
+		}
 	}
 }

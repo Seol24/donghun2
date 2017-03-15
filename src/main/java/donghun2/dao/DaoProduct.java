@@ -81,7 +81,7 @@ public class DaoProduct implements Dao<Product> {
 	
 
 	@Override
-	public Product selectItemByNo(String code) {
+	public Product selectItemByNo(Product code) {
 		// TODO Auto-generated method stub
 		return null;
 	}
