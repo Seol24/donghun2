@@ -10,9 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import donghuns2.view.CustomerView;
-import donghuns2.view.EmployeeView;
-import donghuns2.view.ProductView;
+import donghun2.view.CustomerView;
+import donghun2.view.EmployeeView;
+import donghun2.view.ProductView;
 
 public class Basic extends JFrame implements ActionListener {
 

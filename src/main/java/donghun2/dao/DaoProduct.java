@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import donghun2.dto.Product;
-
-import donghuns2.jdbc.DBCon;
+import donghun2.jdbc.DBCon;
 
 
 
@@ -18,9 +17,7 @@ public class DaoProduct implements Dao<Product> {
 	
 	private DaoProduct(){}
 
-	public static DaoProduct getInstance() {
-		return instance;
-	}
+	public static DaoProduct getInstance() {return instance;}
 
 	@Override
 	public int replaceItem(Product item) {
@@ -35,7 +32,7 @@ public class DaoProduct implements Dao<Product> {
 			pstmt.setString(2, item.getName());
 			pstmt.setInt(3, item.getSalePrice());
 			pstmt.setInt(4, item.getOrigiPrice());
-			
+			System.out.println(pstmt);
 			res = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -53,7 +50,6 @@ public class DaoProduct implements Dao<Product> {
 	@Override
 	public Vector<Product> selectItemByAll() {
 		String sql = "select code,name,saleprice,origiprice from product";
-		//DataBase 연결(접속)
 		DBCon dbCon = new DBCon();
 		Connection connection = dbCon.getConnection();
 		PreparedStatement pstmt = null;
@@ -82,26 +78,66 @@ public class DaoProduct implements Dao<Product> {
 	
 
 	@Override
-	public Product selectItemByNo(String code) {
-		// TODO Auto-generated method stub
-		return null;
+	public Product selectItemByNo(Product item) {
+		String sql = "select code,name,saleprice,origiprice from product where code=?";
+		DBCon dbCon = new DBCon();
+		Connection connection = dbCon.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Product product = null;
+			try {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setString(1, item.getCode());
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					product = getObject(rs);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					rs.close();
+					pstmt.close();
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return product;
 	}
 
-	@Override
-	public int updateItem(Product item) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int deleteItem(Product item) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "delete from Customer where code = ?";
+		DBCon dbCon = new DBCon();
+		Connection connection = dbCon.getConnection();
+		PreparedStatement pstmt = null;
+		int res = -1;
+		try {
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1, item.getCode());
+			res = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				pstmt.close();
+				connection.close();
+				dbCon.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
 	}
 	@Override
 	public Product getObject(ResultSet rs) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		String code = rs.getString("code");
+		String name = rs.getString("name");
+		int salePrice = rs.getInt("salePrice");
+		int origiPrice = rs.getInt("origiPrice");
+		return new Product(code, name, salePrice, origiPrice);
 	}
 
 	

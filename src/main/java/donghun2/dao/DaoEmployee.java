@@ -29,16 +29,11 @@ public class DaoEmployee implements Dao<Employee> {
 	}
 
 	@Override
-	public Employee selectItemByNo(String code) {
+	public Employee selectItemByNo(Employee code) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public int updateItem(Employee item) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int deleteItem(Employee item) {

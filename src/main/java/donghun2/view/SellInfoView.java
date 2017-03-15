@@ -1,4 +1,4 @@
-package donghuns2.view;
+package donghun2.view;
 
 import java.awt.EventQueue;
 

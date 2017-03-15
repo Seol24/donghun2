@@ -12,6 +12,14 @@ public class Product {
 		this.salePrice = salePrice;
 		this.origiPrice = origiPrice;
 	}
+	
+	
+
+	public Product(String code) {
+		this.code = code;
+	}
+
+
 
 	public String getCode() {
 		return code;
@@ -49,6 +57,12 @@ public class Product {
 	public String toString() {
 		return String.format("Product [code=%s, name=%s, salePrice=%s, origiPrice=%s]", code, name, salePrice,
 				origiPrice);
+	}
+
+
+
+	public String[] toArray() {
+		return new String[] {code, name, String.valueOf(salePrice), String.valueOf(origiPrice)};
 	}
 	
 	

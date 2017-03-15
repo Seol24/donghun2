@@ -8,17 +8,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import donghun2.dao.DaoCustomer;
-import donghun2.dto.Customer;
+import donghun2.dao.DaoProduct;
+import donghun2.dto.Product;
 
-public class CustomerTable extends JPanel {
+public class ProductTable extends JPanel {
 	private JTable table;
-	private static DaoCustomer dao;
+	private static DaoProduct dao;
 
-	/**
-	 * Create the panel.
-	 */
-	public CustomerTable() {
+	
+	public ProductTable() {
 		setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -35,14 +33,14 @@ public class CustomerTable extends JPanel {
 	
 	
 	protected String[] getColumn() {
-		return new String[]{"거래처코드","거래처명","거래처등급"};
+		return new String[]{"제품코드","제품명","판매정가","판매원가"};
 	}
 	
 	protected String[][] getRowDate() {
-		Vector<Customer> vCustomer = dao.getInstance().selectItemByAll();
-		String[][] datas = new String[vCustomer.size()][];
+		Vector<Product> vProduct = dao.getInstance().selectItemByAll();
+		String[][] datas = new String[vProduct.size()][];
 		for(int i = 0; i < datas.length; i++){
-			datas[i] = vCustomer.get(i).toArray();
+			datas[i] = vProduct.get(i).toArray();
 		}
 		return datas;
 	}

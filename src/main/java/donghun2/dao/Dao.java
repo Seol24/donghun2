@@ -1,3 +1,4 @@
+
 package donghun2.dao;
 
 import java.sql.ResultSet;
@@ -10,8 +11,7 @@ public interface Dao<T> {
 	int replaceItem(T item);
 	Vector<T> selectItemByAll();
 	T getObject(ResultSet rs) throws SQLException;
-	T selectItemByNo(String code);
-	int updateItem(T item);
+	T selectItemByNo(T item);
 	
 	int deleteItem(T item);
 }

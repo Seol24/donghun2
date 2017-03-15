@@ -1,4 +1,4 @@
-package donghuns2.jdbc;
+package donghun2.jdbc;
 
 import java.io.InputStream;
 import java.util.Properties;

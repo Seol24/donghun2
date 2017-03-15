@@ -1,7 +1,12 @@
 package donghun2.panel;
 
 import javax.swing.JPanel;
+
+import donghun2.dto.Customer;
+import donghun2.dto.Product;
+
 import java.awt.GridLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import erp_myframework.TextFiledPanel;
 
@@ -31,8 +36,40 @@ public class ProductPanel extends JPanel {
 		add(pOrigiPrice);
 
 	}
-
 	
+	public Product getObject(){
+		String code = pCode.getTfValue();
+		String name = pName.getTfValue();
+		int salePrice = Integer.parseInt(pSalePrice.getTfValue());
+		int origiPrice = Integer.parseInt(pOrigiPrice.getTfValue());
+		return new Product(code, name, salePrice, origiPrice);
+	}
+	
+	public void setObject(Product item){
+		pCode.setTfValue(item.getCode());
+		pName.setTfValue(item.getName());
+		pSalePrice.setTfValue(String.valueOf(item.getSalePrice()));
+		pOrigiPrice.setTfValue(String.valueOf(item.getOrigiPrice()));
+	}
+
+	public void clear(){
+		pCode.setTfValue("");
+		pName.setTfValue("");
+		pSalePrice.setTfValue("");
+		pOrigiPrice.setTfValue("");
+	}
+	public boolean isEmpty(){
+		boolean result = false;
+		for(Component c : getComponents()){
+			if(c instanceof TextFiledPanel){
+				TextFiledPanel tfp =(TextFiledPanel)c;
+				if(tfp.isEmpty()){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	
 
 }
