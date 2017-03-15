@@ -1,4 +1,4 @@
-package donghun2.view;
+package donghuns2.view;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
