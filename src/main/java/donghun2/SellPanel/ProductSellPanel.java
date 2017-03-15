@@ -15,9 +15,6 @@ public class ProductSellPanel extends JPanel implements ActionListener {
 	private TextFiledPanel pName;
 	private TextFiledPanel pGrade;
 
-	/**
-	 * Create the panel.
-	 */
 	public ProductSellPanel() {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
