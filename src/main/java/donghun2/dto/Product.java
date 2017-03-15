@@ -12,6 +12,7 @@ public class Product {
 		this.salePrice = salePrice;
 		this.origiPrice = origiPrice;
 	}
+	
 
 	public String getCode() {
 		return code;

@@ -1,4 +1,4 @@
-package donghuns2.view;
+package donghun2.view;
 
 import java.awt.Component;
 import java.awt.EventQueue;
@@ -86,24 +86,26 @@ public class ProductView extends JFrame implements ActionListener {
 	}
 	protected void actionPerformedBtnSave(ActionEvent e) {
 		if(isValidcheck()){
-			JOptionPane.showMessageDialog(null, "공백이 존재");
+			JOptionPane.showMessageDialog(null, "빈칸이 있습니다.");
 			return;
 		}
-		Product item = getObject();
-		dao.insertItem(item);
-		JOptionPane.showMessageDialog(null, "추가됨");
+		Product item = dao.getObject();
+		dao.getInstance().replaceItem(item);
+		JOptionPane.showMessageDialog(null, "저장되었습니다.");
 		clear();
 	}
-	private Product getObject() {
-		String code = pProduct.pCode.getTfValue();
-		String name = pProduct.pName.getTfValue();
-		int saleprice = Integer.parseInt(pProduct.pSalePrice.getTfValue());
-		int origiprice = Integer.parseInt(pProduct.pOrigiPrice.getTfValue());
-		return new Product(code, name, saleprice, origiprice);
-	}
+	
 
 	protected void actionPerformedBtnDele(ActionEvent e) {
-		
+		if(isValidcheck()){
+			JOptionPane.showMessageDialog(null, "코드 입력하세요.");
+			return;
+			int res = dao.getInstance().deleteItem(pProduct.get)
+		}
+		Product item = getObject();
+		dao.getInstance().deleteItem(item);
+		JOptionPane.showMessageDialog(null, "저장되었습니다.");
+		clear();
 	}
 	protected void actionPerformedBtnSearch(ActionEvent e) {
 		

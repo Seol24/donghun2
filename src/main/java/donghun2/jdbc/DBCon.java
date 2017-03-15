@@ -1,4 +1,4 @@
-package donghuns2.jdbc;
+package donghun2.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +14,6 @@ public class DBCon {
 	public DBCon() {
 		loadProp = new LoadProperties("resources/conf.properties");
 		properties = loadProp.getProperties();
-		
 		try {
 			connection = DriverManager.getConnection(
 					properties.getProperty("url"),
@@ -25,6 +24,7 @@ public class DBCon {
 			e.printStackTrace();
 		}
 	}
+	
 	public Connection getConnection() {
 		return connection;
 	}
