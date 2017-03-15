@@ -7,7 +7,7 @@ import java.util.Properties;
 
 
 public class DBCon {
-	private Connection connection;
+/*	private Connection connection;
 	private LoadProperties loadProp;
 	private Properties properties;
 	
@@ -24,7 +24,22 @@ public class DBCon {
 			System.err.printf("Mysql Driver가 없거나 URL, User, Password 확인");
 			e.printStackTrace();
 		}
+	}*/
+	private String dbname = "donghun2";
+	private String url = "jdbc:mysql://localhost:3306/"+dbname;
+	private String user =  "user_donghun2";
+	private String password = "rootroot";
+	private Connection connection;
+	public DBCon() {
+		try {
+			connection = DriverManager.getConnection(url, user, password);
+		} catch (SQLException e) {
+			System.out.println("연결실패- 사용자정보 및 드라이버를 찾을 수 없음");
+			e.printStackTrace();
+		}
 	}
+	
+	
 	public Connection getConnection() {
 		return connection;
 	}

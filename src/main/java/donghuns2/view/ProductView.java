@@ -90,7 +90,7 @@ public class ProductView extends JFrame implements ActionListener {
 			return;
 		}
 		Product item = getObject();
-		dao.insertItem(item);
+		DaoProduct.getInstance().replaceItem(item);
 		JOptionPane.showMessageDialog(null, "추가됨");
 		clear();
 	}

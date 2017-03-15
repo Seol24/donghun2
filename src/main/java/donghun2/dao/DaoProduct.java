@@ -14,14 +14,16 @@ import donghuns2.jdbc.DBCon;
 
 
 public class DaoProduct implements Dao<Product> {
+	private static final DaoProduct instance = new DaoProduct();
+	
+	private DaoProduct(){}
+
+	public static DaoProduct getInstance() {
+		return instance;
+	}
 
 	@Override
-
 	public int replaceItem(Product item) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	public int insertItem(Product item) {
 		String sql = "replace into product(code,name,saleprice,origiprice) VALUES (?,?,?,?)";
 		DBCon dbCon = new DBCon();
 		Connection connection = dbCon.getConnection();
@@ -46,7 +48,6 @@ public class DaoProduct implements Dao<Product> {
 			}
 		}
 		return res;
-
 	}
 
 	@Override
