@@ -23,6 +23,7 @@ public class DaoCustomer implements Dao<Customer> {
 
 
 
+<<<<<<< HEAD
 	@Override
 	public int replaceItem(Customer item) {
 		String sql ="replace into Customer(code, name, grade) values(?,?,?)";
@@ -51,6 +52,8 @@ public class DaoCustomer implements Dao<Customer> {
 		
 		return 0;
 	}
+=======
+>>>>>>> refs/remotes/origin/master
 
 	@Override
 	public Vector<Customer> selectItemByAll() {
@@ -95,6 +98,10 @@ public class DaoCustomer implements Dao<Customer> {
 		return null;
 	}
 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> refs/remotes/origin/master
 
 	@Override
 	public int deleteItem(Customer item) {
@@ -123,6 +130,26 @@ public class DaoCustomer implements Dao<Customer> {
 	}
 
 
+<<<<<<< HEAD
 
+=======
+	@Override
+	public Customer selectItemByNo(Customer item) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int deleteItem(Customer item) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int replaceItem(Customer item) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+>>>>>>> refs/remotes/origin/master
 	
 }

@@ -10,12 +10,15 @@ import donghun2.dto.SaleInfo;
 public class DaoSaleInfo implements Dao<SaleInfo> {
 
 	@Override
+<<<<<<< HEAD
 	public int replaceItem(SaleInfo item) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
+=======
+>>>>>>> refs/remotes/origin/master
 	public Vector<SaleInfo> selectItemByAll() {
 		// TODO Auto-generated method stub
 		return null;
@@ -28,7 +31,26 @@ public class DaoSaleInfo implements Dao<SaleInfo> {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public SaleInfo selectItemByNo(SaleInfo code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int deleteItem(SaleInfo item) {
+=======
+	public int updateItem(SaleInfo item) {
+>>>>>>> refs/remotes/origin/master
+		// TODO Auto-generated method stub
+		return 0;
+	}
+<<<<<<< HEAD
+	
+=======
+
+	@Override
+	public SaleInfo selectItemByNo(SaleInfo item) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -38,6 +60,12 @@ public class DaoSaleInfo implements Dao<SaleInfo> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
+	@Override
+	public int replaceItem(SaleInfo item) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+>>>>>>> refs/remotes/origin/master
 	
 }
