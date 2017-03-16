@@ -6,7 +6,6 @@ import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-<<<<<<< HEAD
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -26,11 +25,8 @@ public class CustomerView extends JFrame implements ActionListener {
 	private JButton btnSave;
 	private JButton btnDele;
 	private CustomerTable pTable;
+	private JButton btnSearch;
 	
-
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,9 +40,6 @@ public class CustomerView extends JFrame implements ActionListener {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public CustomerView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 277);
@@ -70,7 +63,8 @@ public class CustomerView extends JFrame implements ActionListener {
 		btnDele.addActionListener(this);
 		pbtn.add(btnDele);
 		
-		JButton btnSearch = new JButton("검색");
+		btnSearch = new JButton("검색");
+		btnSearch.addActionListener(this);
 		pbtn.add(btnSearch);
 		
 		pTable = new CustomerTable();
@@ -79,6 +73,9 @@ public class CustomerView extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSearch) {
+			actionPerformedBtnSearch(e);
+		}
 		if (e.getSource() == btnDele) {
 			actionPerformedBtnDele(e);
 		}
@@ -92,6 +89,7 @@ public class CustomerView extends JFrame implements ActionListener {
 		}else{
 			DaoCustomer.getInstance().replaceItem(pCustomer.getObject());
 			JOptionPane.showMessageDialog(null, "저장되었습니다.");
+			pTable.loadDate();
 		}
 		
 		
@@ -102,63 +100,17 @@ public class CustomerView extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "삭제안댐");
 		}else{
 			JOptionPane.showMessageDialog(null, "삭제댐");
+			pTable.loadDate();
 		}
 	}
-=======
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import donghun2.panel.CustomerPanel;
-
-public class CustomerView extends JFrame {
-
-	private JPanel contentPane;
-	private CustomerPanel pCustomer;
-	private JPanel pbtn;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CustomerView frame = new CustomerView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	protected void actionPerformedBtnSearch(ActionEvent e) {
+		Customer res = DaoCustomer.getInstance().selectItemByNo(pCustomer.getObject());
+		if(res == null){
+			JOptionPane.showMessageDialog(null, "검색결과가 없습니다.");
+		}else{
+			JOptionPane.showMessageDialog(null, "검색하였습니다.");
+			pCustomer.setObject(res);
+		}
+		
 	}
-
-	/**
-	 * Create the frame.
-	 */
-	public CustomerView() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 277);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
-		
-		pCustomer = new CustomerPanel();
-		contentPane.add(pCustomer);
-		
-		pbtn = new JPanel();
-		contentPane.add(pbtn);
-		pbtn.setLayout(new GridLayout(0, 3, 0, 0));
-		
-		JButton btnSave = new JButton("저장");
-		pbtn.add(btnSave);
-		
-		JButton btnDele = new JButton("삭제");
-		pbtn.add(btnDele);
-		
-		JButton btnSearch = new JButton("검색");
-		pbtn.add(btnSearch);
-	}
-
->>>>>>> refs/remotes/origin/master
 }

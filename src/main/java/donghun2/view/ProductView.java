@@ -1,9 +1,8 @@
 package donghun2.view;
 
-<<<<<<< HEAD
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,17 +11,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import donghun2.dao.DaoCustomer;
 import donghun2.dao.DaoProduct;
+import donghun2.dto.Customer;
 import donghun2.dto.Product;
 import donghun2.panel.ProductPanel;
-import donghun2.table.CustomerTable;
 import donghun2.table.ProductTable;
-import erp_myframework.TextFiledPanel;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class ProductView extends JFrame implements ActionListener {
+public class ProductView extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnSave;
@@ -45,7 +41,7 @@ public class ProductView extends JFrame implements ActionListener {
 			}
 		});
 	}
-	
+
 	public ProductView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 322);
@@ -54,23 +50,20 @@ public class ProductView extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
-		pProduct = new ProductPanel();
+		ProductPanel pProduct = new ProductPanel();
 		contentPane.add(pProduct);
 		
 		JPanel pBtn = new JPanel();
 		contentPane.add(pBtn);
 		pBtn.setLayout(new GridLayout(0, 3, 0, 0));
 		
-		btnSave = new JButton("저장");
-		btnSave.addActionListener(this);
+		JButton btnSave = new JButton("저장");
 		pBtn.add(btnSave);
 		
-		btnDele = new JButton("삭제");
-		btnDele.addActionListener(this);
+		JButton btnDele = new JButton("삭제");
 		pBtn.add(btnDele);
 		
-		btnSearch = new JButton("검색");
-		btnSearch.addActionListener(this);
+		JButton btnSearch = new JButton("검색");
 		pBtn.add(btnSearch);
 		
 		ProductTable pt = new ProductTable();
@@ -79,10 +72,6 @@ public class ProductView extends JFrame implements ActionListener {
 		pTable = new ProductTable();
 		contentPane.add(pTable);
 		pTable.setVisible(true);
-	}
-	
-	public void setDao(DaoProduct dao) {
-		this.dao = dao;
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -131,80 +120,12 @@ public class ProductView extends JFrame implements ActionListener {
 	}
 	
 	protected void actionPerformedBtnSearch(ActionEvent e) {
-		if(pProduct.pCode.getTfValue().isEmpty()){
-			JOptionPane.showMessageDialog(null, "공백이 존재");
-			return;
+		Product res = DaoProduct.getInstance().selectItemByNo(pProduct.getObject());
+		if(res == null){
+			JOptionPane.showMessageDialog(null, "검색결과가 없습니다.");
+		}else{
+			JOptionPane.showMessageDialog(null, "검색하였습니다.");
+			pProduct.setObject(res);
 		}
-		Product code = new Product(pProduct.pCode.getTfValue());
-		Product item = DaoProduct.getInstance().selectItemByNo(code);
-		if(item==null){
-			JOptionPane.showMessageDialog(null, "데이터 없음");
-			return;
-		}
-		pProduct.setObject(item);
 	}
-	
 }
-
-=======
-import java.awt.EventQueue;
-import java.awt.GridLayout;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import donghun2.panel.ProductPanel;
-
-public class ProductView extends JFrame {
-
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ProductView frame = new ProductView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public ProductView() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 322);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
-		
-		ProductPanel pProduct = new ProductPanel();
-		contentPane.add(pProduct);
-		
-		JPanel pBtn = new JPanel();
-		contentPane.add(pBtn);
-		pBtn.setLayout(new GridLayout(0, 3, 0, 0));
-		
-		JButton btnSave = new JButton("저장");
-		pBtn.add(btnSave);
-		
-		JButton btnDele = new JButton("삭제");
-		pBtn.add(btnDele);
-		
-		JButton btnSearch = new JButton("검색");
-		pBtn.add(btnSearch);
-	}
-
-}
->>>>>>> refs/remotes/origin/master

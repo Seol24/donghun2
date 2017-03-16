@@ -16,14 +16,9 @@ public class DaoCustomer implements Dao<Customer> {
 	public static DaoCustomer getInstance() {
 		return instance;
 	}
-	
-	
 
 	private DaoCustomer() {}
 
-
-
-<<<<<<< HEAD
 	@Override
 	public int replaceItem(Customer item) {
 		String sql ="replace into Customer(code, name, grade) values(?,?,?)";
@@ -52,8 +47,6 @@ public class DaoCustomer implements Dao<Customer> {
 		
 		return 0;
 	}
-=======
->>>>>>> refs/remotes/origin/master
 
 	@Override
 	public Vector<Customer> selectItemByAll() {
@@ -93,15 +86,35 @@ public class DaoCustomer implements Dao<Customer> {
 	}
 
 	@Override
-	public Customer selectItemByNo(Customer code) {
-		// TODO Auto-generated method stub
-		return null;
+	public Customer selectItemByNo(Customer item) {
+		String sql = "select code, name, grade from customer where code = ?";
+		DBCon dbCon = new DBCon();
+		Connection connection = dbCon.getConnection();
+		PreparedStatement pstmt = null;
+		Customer customer = null;
+		ResultSet rs = null;
+		try {
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1, item.getCode());
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				customer = getObject(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}			
+			dbCon.close();
+		}
+		
+		
+		return customer;
 	}
-
-<<<<<<< HEAD
-=======
-	
->>>>>>> refs/remotes/origin/master
 
 	@Override
 	public int deleteItem(Customer item) {
@@ -127,29 +140,7 @@ public class DaoCustomer implements Dao<Customer> {
 		}
 		
 		return res;
+
+
 	}
-
-
-<<<<<<< HEAD
-
-=======
-	@Override
-	public Customer selectItemByNo(Customer item) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int deleteItem(Customer item) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int replaceItem(Customer item) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
->>>>>>> refs/remotes/origin/master
-	
 }

@@ -9,9 +9,6 @@ import java.util.Vector;
 import donghun2.dto.Product;
 import donghun2.jdbc.DBCon;
 
-
-
-
 public class DaoProduct implements Dao<Product> {
 	private static final DaoProduct instance = new DaoProduct();
 	
@@ -20,7 +17,6 @@ public class DaoProduct implements Dao<Product> {
 	public static DaoProduct getInstance() {return instance;}
 
 	@Override
-<<<<<<< HEAD
 	public int replaceItem(Product item) {
 		String sql = "replace into product(code,name,saleprice,origiprice) VALUES (?,?,?,?)";
 		DBCon dbCon = new DBCon();
@@ -49,8 +45,6 @@ public class DaoProduct implements Dao<Product> {
 	}
 
 	@Override
-=======
->>>>>>> refs/remotes/origin/master
 	public Vector<Product> selectItemByAll() {
 		String sql = "select code,name,saleprice,origiprice from product";
 		DBCon dbCon = new DBCon();
@@ -134,6 +128,8 @@ public class DaoProduct implements Dao<Product> {
 		}
 		return res;
 	}
+
+	
 	@Override
 	public Product getObject(ResultSet rs) throws SQLException {
 		String code = rs.getString("code");
@@ -143,31 +139,4 @@ public class DaoProduct implements Dao<Product> {
 		return new Product(code, name, salePrice, origiPrice);
 	}
 
-<<<<<<< HEAD
-=======
-	@Override
-	public int updateItem(Product item) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Product selectItemByNo(Product item) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int deleteItem(Product item) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int replaceItem(Product item) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
->>>>>>> refs/remotes/origin/master
-	
 }
