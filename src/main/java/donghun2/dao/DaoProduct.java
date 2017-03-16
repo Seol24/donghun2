@@ -20,6 +20,7 @@ public class DaoProduct implements Dao<Product> {
 	public static DaoProduct getInstance() {return instance;}
 
 	@Override
+<<<<<<< HEAD
 	public int replaceItem(Product item) {
 		String sql = "replace into product(code,name,saleprice,origiprice) VALUES (?,?,?,?)";
 		DBCon dbCon = new DBCon();
@@ -48,6 +49,8 @@ public class DaoProduct implements Dao<Product> {
 	}
 
 	@Override
+=======
+>>>>>>> refs/remotes/origin/master
 	public Vector<Product> selectItemByAll() {
 		String sql = "select code,name,saleprice,origiprice from product";
 		DBCon dbCon = new DBCon();
@@ -132,6 +135,7 @@ public class DaoProduct implements Dao<Product> {
 		return res;
 	}
 
+<<<<<<< HEAD
 	
 	@Override
 	public Product getObject(ResultSet rs) throws SQLException {
@@ -142,5 +146,12 @@ public class DaoProduct implements Dao<Product> {
 		return new Product(code, name, salePrice, origiPrice);
 	}
 
+=======
+	@Override
+	public int replaceItem(Product item) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+>>>>>>> refs/remotes/origin/master
 	
 }

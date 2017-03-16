@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import donghun2.dao.DaoEmployee;
+import donghun2.dto.Employee;
 import donghun2.panel.EmployeePanel;
 
 @SuppressWarnings("serial")
@@ -26,9 +27,6 @@ public class EmployeeView extends JFrame implements ActionListener {
 	private JButton btnSave;
 	private JButton btnDele;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -86,10 +84,23 @@ public class EmployeeView extends JFrame implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnSearch(ActionEvent e) {
-		DaoEmployee.getInstance().selectItemByNo(pEmployee.getObject());
+		Employee res = DaoEmployee.getInstance().selectItemByNo(pEmployee.getObject());
+		if(res==null){
+			JOptionPane.showMessageDialog(null, "검색결과가 없습니다");
+		}else{
+			pEmployee.setObject(res);
+		}
+		
+		
+		
 	}
 	protected void actionPerformedBtnSave(ActionEvent e) {
-		DaoEmployee.getInstance().insertItem(pEmployee.getObject());
+		if(pEmployee.isEmpty()){
+			JOptionPane.showMessageDialog(null, "빈칸이 있습니다");
+		}else{
+			DaoEmployee.getInstance().replaceItem(pEmployee.getObject());
+			JOptionPane.showMessageDialog(null, "저장되었습니다");
+		}
 		
 	}
 	protected void actionPerformedBtnDele(ActionEvent e) {
