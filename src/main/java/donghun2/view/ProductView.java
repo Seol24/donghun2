@@ -73,7 +73,13 @@ public class ProductView extends JFrame implements ActionListener {
 		this.dao = dao;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnSearch) {
 			actionPerformedBtnSearch(e);
 		}
@@ -83,8 +89,8 @@ public class ProductView extends JFrame implements ActionListener {
 		if (e.getSource() == btnSave) {
 			actionPerformedBtnSave(e);
 		}
-	}
-	protected void actionPerformedBtnSave(ActionEvent e) {
+	}*/
+	/*protected void actionPerformedBtnSave(ActionEvent e) {
 		if(isValidcheck()){
 			JOptionPane.showMessageDialog(null, "빈칸이 있습니다.");
 			return;
@@ -133,5 +139,5 @@ public class ProductView extends JFrame implements ActionListener {
 			};
 		}
 		return false;
-	}
+	}*/
 }

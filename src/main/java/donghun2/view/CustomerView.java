@@ -25,6 +25,7 @@ public class CustomerView extends JFrame implements ActionListener {
 	private JButton btnSave;
 	private JButton btnDele;
 	private CustomerTable pTable;
+	private JButton btnSearch;
 	
 
 	/**
@@ -69,7 +70,8 @@ public class CustomerView extends JFrame implements ActionListener {
 		btnDele.addActionListener(this);
 		pbtn.add(btnDele);
 		
-		JButton btnSearch = new JButton("검색");
+		btnSearch = new JButton("검색");
+		btnSearch.addActionListener(this);
 		pbtn.add(btnSearch);
 		
 		pTable = new CustomerTable();
@@ -78,6 +80,9 @@ public class CustomerView extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSearch) {
+			actionPerformedBtnSearch(e);
+		}
 		if (e.getSource() == btnDele) {
 			actionPerformedBtnDele(e);
 		}
@@ -91,6 +96,7 @@ public class CustomerView extends JFrame implements ActionListener {
 		}else{
 			DaoCustomer.getInstance().replaceItem(pCustomer.getObject());
 			JOptionPane.showMessageDialog(null, "저장되었습니다.");
+			pTable.loadDate();
 		}
 		
 		
@@ -101,6 +107,17 @@ public class CustomerView extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "삭제안댐");
 		}else{
 			JOptionPane.showMessageDialog(null, "삭제댐");
+			pTable.loadDate();
 		}
+	}
+	protected void actionPerformedBtnSearch(ActionEvent e) {
+		Customer res = DaoCustomer.getInstance().selectItemByNo(pCustomer.getObject());
+		if(res == null){
+			JOptionPane.showMessageDialog(null, "검색결과가 없습니다.");
+		}else{
+			JOptionPane.showMessageDialog(null, "검색하였습니다.");
+			pCustomer.setObject(res);
+		}
+		
 	}
 }

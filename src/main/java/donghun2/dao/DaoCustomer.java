@@ -90,9 +90,34 @@ public class DaoCustomer implements Dao<Customer> {
 	}
 
 	@Override
-	public Customer selectItemByNo(Customer code) {
-		// TODO Auto-generated method stub
-		return null;
+	public Customer selectItemByNo(Customer item) {
+		String sql = "select code, name, grade from customer where code = ?";
+		DBCon dbCon = new DBCon();
+		Connection connection = dbCon.getConnection();
+		PreparedStatement pstmt = null;
+		Customer customer = null;
+		ResultSet rs = null;
+		try {
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1, item.getCode());
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				customer = getObject(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}			
+			dbCon.close();
+		}
+		
+		
+		return customer;
 	}
 
 	@Override
