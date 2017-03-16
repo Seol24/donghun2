@@ -120,32 +120,8 @@ public class DaoEmployee implements Dao<Employee> {
 		return employee;
 	}
 
-	@Override
-	public int updateItem(Employee item) {
-		String sql = "update employee set name=?,grade=? where code=?";
-		DBCon dbCon = new DBCon();
-		Connection connection = dbCon.getConnection();
-		PreparedStatement pstmt = null;
-		int res = -1;
-		try {
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setString(1, item.getName());
-			pstmt.setString(2, item.getGrade());
-			pstmt.setString(3, item.getCode());
-			res = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pstmt.close();
-				dbCon.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			dbCon.close();
-		}
-		return res;
-	}
+
+
 
 	@Override
 	public int deleteItem(Employee item) {

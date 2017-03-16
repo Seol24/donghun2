@@ -13,7 +13,7 @@ public interface Dao<T> {
 	Vector<T> selectItemByAll();
 	T getObject(ResultSet rs) throws SQLException;
 	T selectItemByNo(T item);	//이거 맞춰야됌
-	int updateItem(T item);
 
+	
 	int deleteItem(T item);
 }

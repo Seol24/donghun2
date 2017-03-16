@@ -9,19 +9,28 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import donghun2.dao.DaoProduct;
+import donghun2.dto.Product;
 import donghun2.panel.ProductPanel;
+import donghun2.table.CustomerTable;
+import donghun2.table.ProductTable;
+import erp_myframework.TextFiledPanel;
 
 public class ProductView extends JFrame {
 
 	private JPanel contentPane;
+	private JButton btnSave;
+	private JButton btnDele;
+	private JButton btnSearch;
+	protected DaoProduct dao;
+	private ProductPanel pProduct;
+	private ProductTable pTable;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -61,6 +70,72 @@ public class ProductView extends JFrame {
 		
 		JButton btnSearch = new JButton("검색");
 		pBtn.add(btnSearch);
+		
+		ProductTable pt = new ProductTable();
+		pt.setVisible(true);
+
+		pTable = new ProductTable();
+		contentPane.add(pTable);
+		pTable.setVisible(true);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnSearch) {
+			actionPerformedBtnSearch(e);
+		}
+		if (e.getSource() == btnDele) {
+			actionPerformedBtnDele(e);
+		}
+		if (e.getSource() == btnSave) {
+			actionPerformedBtnSave(e);
+		}
+	}
+	protected void actionPerformedBtnSave(ActionEvent e) {
+		if(pProduct.isEmpty()){
+			JOptionPane.showMessageDialog(null, "공백이 존재");
+			return;
+		}
+		if(Integer.parseInt(pProduct.pSalePrice.getTfValue())<Integer.parseInt(pProduct.pOrigiPrice.getTfValue())){
+			JOptionPane.showMessageDialog(null, "정가보다 원가가 클 수 없음");
+			return;
+		}
+		String msg = "추가됨";
+		Product item = pProduct.getObject();
+		if(DaoProduct.getInstance().selectItemByNo(item)!=null){
+			msg = "데이터가 이미 존재하므로 덮어씀";
+		}
+		DaoProduct.getInstance().replaceItem(item);
+		JOptionPane.showMessageDialog(null, msg);
+		pProduct.clear();
+		pTable.loadData();
+	}
+
+	protected void actionPerformedBtnDele(ActionEvent e) {
+		if(pProduct.isEmpty()){
+			JOptionPane.showMessageDialog(null, "공백이 존재");
+			return;
+		}
+		Product item = pProduct.getObject();
+		if(DaoProduct.getInstance().deleteItem(item)==0){
+			JOptionPane.showMessageDialog(null, "삭제할 데이터 없음");
+		}else{
+			JOptionPane.showMessageDialog(null, "삭제 되었습니다");
+		}
+		pProduct.clear();
+	}
+	
+	protected void actionPerformedBtnSearch(ActionEvent e) {
+		if(pProduct.pCode.getTfValue().isEmpty()){
+			JOptionPane.showMessageDialog(null, "공백이 존재");
+			return;
+		}
+		Product code = new Product(pProduct.pCode.getTfValue());
+		Product item = DaoProduct.getInstance().selectItemByNo(code);
+		if(item==null){
+			JOptionPane.showMessageDialog(null, "데이터 없음");
+			return;
+		}
+		pProduct.setObject(item);
+	}
 }
+

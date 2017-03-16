@@ -14,6 +14,9 @@ import donghun2.jdbc.DBCon;
 
 public class DaoProduct implements Dao<Product> {
 	private static final DaoProduct instance = new DaoProduct();
+	
+	private DaoProduct(){}
+
 	public static DaoProduct getInstance() {return instance;}
 
 	@Override
@@ -43,7 +46,6 @@ public class DaoProduct implements Dao<Product> {
 		}
 		return res;
 	}
-
 
 	@Override
 	public Vector<Product> selectItemByAll() {
@@ -76,17 +78,34 @@ public class DaoProduct implements Dao<Product> {
 	
 
 	@Override
-	public Product selectItemByNo(Product code) {
-		// TODO Auto-generated method stub
-		return null;
+	public Product selectItemByNo(Product item) {
+		String sql = "select code,name,saleprice,origiprice from product where code=?";
+		DBCon dbCon = new DBCon();
+		Connection connection = dbCon.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Product product = null;
+			try {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setString(1, item.getCode());
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					product = getObject(rs);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					rs.close();
+					pstmt.close();
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return product;
 	}
 
-
-	@Override
-	public int updateItem(Product item) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int deleteItem(Product item) {

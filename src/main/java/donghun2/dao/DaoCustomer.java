@@ -122,13 +122,6 @@ public class DaoCustomer implements Dao<Customer> {
 	
 
 	@Override
-	public int updateItem(Customer item) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
 	public int deleteItem(Customer item) {
 		String sql = "delete from Customer where code = ?";
 		DBCon dbCon = new DBCon();
@@ -155,5 +148,9 @@ public class DaoCustomer implements Dao<Customer> {
 
 
 	}
+
+
+
+	
 	
 }
