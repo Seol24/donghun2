@@ -1,4 +1,4 @@
-package donghuns2.view;
+package donghun2.view;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -9,13 +9,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import donghun2.panel.CustomerPanel;
+import donghun2.panel.ProductPanel;
 
-public class CustomerView extends JFrame {
+public class ProductView extends JFrame {
 
 	private JPanel contentPane;
-	private CustomerPanel pCustomer;
-	private JPanel pbtn;
 
 	/**
 	 * Launch the application.
@@ -24,7 +22,7 @@ public class CustomerView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CustomerView frame = new CustomerView();
+					ProductView frame = new ProductView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,29 +34,29 @@ public class CustomerView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CustomerView() {
+	public ProductView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 277);
+		setBounds(100, 100, 450, 322);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
-		pCustomer = new CustomerPanel();
-		contentPane.add(pCustomer);
+		ProductPanel pProduct = new ProductPanel();
+		contentPane.add(pProduct);
 		
-		pbtn = new JPanel();
-		contentPane.add(pbtn);
-		pbtn.setLayout(new GridLayout(0, 3, 0, 0));
+		JPanel pBtn = new JPanel();
+		contentPane.add(pBtn);
+		pBtn.setLayout(new GridLayout(0, 3, 0, 0));
 		
 		JButton btnSave = new JButton("저장");
-		pbtn.add(btnSave);
+		pBtn.add(btnSave);
 		
 		JButton btnDele = new JButton("삭제");
-		pbtn.add(btnDele);
+		pBtn.add(btnDele);
 		
 		JButton btnSearch = new JButton("검색");
-		pbtn.add(btnSearch);
+		pBtn.add(btnSearch);
 	}
 
 }
