@@ -27,11 +27,7 @@ public class DaoCustomer implements Dao<Customer> {
 		return null;
 	}
 
-	@Override
-	public Customer selectItemByNo(String code) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public int updateItem(Customer item) {
@@ -39,8 +35,15 @@ public class DaoCustomer implements Dao<Customer> {
 		return 0;
 	}
 
+
 	@Override
-	public int deleteItem(String code) {
+	public Customer selectItemByNo(Customer item) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int deleteItem(Customer item) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

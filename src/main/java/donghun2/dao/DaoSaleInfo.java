@@ -27,19 +27,19 @@ public class DaoSaleInfo implements Dao<SaleInfo> {
 	}
 
 	@Override
-	public SaleInfo selectItemByNo(String code) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int updateItem(SaleInfo item) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int deleteItem(String code) {
+	public SaleInfo selectItemByNo(SaleInfo item) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int deleteItem(SaleInfo item) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
