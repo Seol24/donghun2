@@ -1,5 +1,6 @@
 package donghun2.view;
 
+
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -8,17 +9,22 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import donghun2.dao.DaoEmployee;
 import donghun2.panel.EmployeePanel;
 
+@SuppressWarnings("serial")
 public class EmployeeView extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton btnSearch;
 	private EmployeePanel pEmployee;
 	private JPanel pBtn;
+	private JButton btnSave;
+	private JButton btnDele;
 
 	/**
 	 * Launch the application.
@@ -55,10 +61,12 @@ public class EmployeeView extends JFrame implements ActionListener {
 		pEmployee.add(pBtn);
 		pBtn.setLayout(new GridLayout(0, 3, 0, 0));
 		
-		JButton btnSave = new JButton("저장");
+		btnSave = new JButton("저장");
+		btnSave.addActionListener(this);
 		pBtn.add(btnSave);
 		
-		JButton btnDele = new JButton("삭제");
+		btnDele = new JButton("삭제");
+		btnDele.addActionListener(this);
 		pBtn.add(btnDele);
 		
 		btnSearch = new JButton("검색");
@@ -67,11 +75,33 @@ public class EmployeeView extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnDele) {
+			actionPerformedBtnDele(e);
+		}
+		if (e.getSource() == btnSave) {
+			actionPerformedBtnSave(e);
+		}
 		if (e.getSource() == btnSearch) {
-			actionPerformedBtnNewButton_2(e);
+			actionPerformedBtnSearch(e);
 		}
 	}
-	protected void actionPerformedBtnNewButton_2(ActionEvent e) {
+	protected void actionPerformedBtnSearch(ActionEvent e) {
+		DaoEmployee.getInstance().selectItemByNo(pEmployee.getObject());
+	}
+	protected void actionPerformedBtnSave(ActionEvent e) {
+		DaoEmployee.getInstance().insertItem(pEmployee.getObject());
 		
+	}
+	protected void actionPerformedBtnDele(ActionEvent e) {
+		
+		int res=DaoEmployee.getInstance().deleteItem(pEmployee.getObject());
+		
+		if(res==0){
+			JOptionPane.showMessageDialog(null, "삭제실패");
+		}else{
+			DaoEmployee.getInstance().deleteItem(pEmployee.getObject());
+			JOptionPane.showMessageDialog(null, "삭제성공");
+		}
+	
 	}
 }

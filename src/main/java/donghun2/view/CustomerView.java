@@ -27,10 +27,6 @@ public class CustomerView extends JFrame implements ActionListener {
 	private CustomerTable pTable;
 	private JButton btnSearch;
 	
-
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -120,4 +116,6 @@ public class CustomerView extends JFrame implements ActionListener {
 		}
 		
 	}
+
+
 }

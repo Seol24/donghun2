@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import donghun2.dto.Customer;
+import donghun2.jdbc.DBCon;
 
 
 public class DaoCustomer implements Dao<Customer> {
@@ -151,9 +152,8 @@ public class DaoCustomer implements Dao<Customer> {
 		}
 		
 		return res;
+
+
 	}
-
-
-
 	
 }

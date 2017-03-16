@@ -76,22 +76,19 @@ public class DaoProduct implements Dao<Product> {
 	
 
 	@Override
-<<<<<<< HEAD
 	public Product selectItemByNo(Product code) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+
 	@Override
-=======
->>>>>>> refs/remotes/origin/master
 	public int updateItem(Product item) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-<<<<<<< HEAD
 	public int deleteItem(Product item) {
 		String sql = "delete from Customer where code = ?";
 		DBCon dbCon = new DBCon();
@@ -114,18 +111,9 @@ public class DaoProduct implements Dao<Product> {
 			}
 		}
 		return res;
-=======
-	public Product selectItemByNo(Product item) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
-	@Override
-	public int deleteItem(Product item) {
-		// TODO Auto-generated method stub
-		return 0;
->>>>>>> refs/remotes/origin/master
-	}
+	
 	@Override
 	public Product getObject(ResultSet rs) throws SQLException {
 		String code = rs.getString("code");
