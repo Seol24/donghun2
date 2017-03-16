@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import donghun2.dto.Customer;
-import donghun2.jdbc.DBCon;
 
 
 public class DaoCustomer implements Dao<Customer> {
@@ -119,12 +118,14 @@ public class DaoCustomer implements Dao<Customer> {
 		
 		return customer;
 	}
+	
 
 	@Override
 	public int updateItem(Customer item) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 	@Override
 	public int deleteItem(Customer item) {
