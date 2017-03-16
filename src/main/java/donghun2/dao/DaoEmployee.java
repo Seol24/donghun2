@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import donghun2.dto.Employee;
-import donghun2.jdbc.DbCon;
+import donghun2.jdbc.DBCon;
 
 public class DaoEmployee implements Dao<Employee> {
 	private static DaoEmployee instance = new DaoEmployee();
@@ -22,7 +22,7 @@ public class DaoEmployee implements Dao<Employee> {
 	public int insertItem(Employee item) {
 		String sql = "insert into employee(code,name,grade) values(?,?,?)";
 
-		DbCon dbCon = new DbCon();
+		DBCon dbCon = new DBCon();
 		Connection connection = dbCon.getConnection();
 		PreparedStatement pstmt = null;
 		try {
@@ -50,7 +50,7 @@ public class DaoEmployee implements Dao<Employee> {
 		String sql = "select code,name,grade from employee";
 		Vector<Employee> list = null;
 
-		DbCon dbCon = new DbCon();
+		DBCon dbCon = new DBCon();
 		Connection connection = dbCon.getConnection();
 
 		// SQL 문장 완성
@@ -96,7 +96,7 @@ public class DaoEmployee implements Dao<Employee> {
 	@Override
 	public Employee selectItemByNo(Employee item) {
 		String sql = "select name,grade from employee where code = ?";
-		DbCon dbCon = new DbCon();
+		DBCon dbCon = new DBCon();
 		Connection connection = dbCon.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -118,7 +118,7 @@ public class DaoEmployee implements Dao<Employee> {
 	@Override
 	public int updateItem(Employee item) {
 		String sql = "update employee set name=?,grade=? where code=?";
-		DbCon dbCon = new DbCon();
+		DBCon dbCon = new DBCon();
 		Connection connection = dbCon.getConnection();
 		PreparedStatement pstmt = null;
 		int res = -1;
@@ -145,7 +145,7 @@ public class DaoEmployee implements Dao<Employee> {
 	@Override
 	public int deleteItem(Employee item) {
 		String sql = "delete from employee where code=?";
-		DbCon dbCon = new DbCon();
+		DBCon dbCon = new DBCon();
 		Connection connection = dbCon.getConnection();
 		PreparedStatement pstmt = null;
 		int res = -1;
