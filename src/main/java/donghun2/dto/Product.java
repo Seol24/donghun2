@@ -62,7 +62,7 @@ public class Product {
 
 
 	public String[] toArray() {
-		return new String[] {code, name, String.valueOf(salePrice), String.valueOf(origiPrice)};
+		return new String[] {code, name, String.format("%,d",salePrice), String.format("%,d",origiPrice)};
 	}
 	
 	

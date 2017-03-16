@@ -6,7 +6,10 @@ import java.util.Vector;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import donghun2.dao.DaoProduct;
 import donghun2.dto.Product;
@@ -24,14 +27,41 @@ public class ProductTable extends JPanel {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		loadDate();
+		loadData();
 
 	}
-	public void loadDate(){
+	public void loadData(){
 		table.setModel(new DefaultTableModel(getRowDate(),getColumn()));
+		cellAlign();
+		cellWidth();
 	}
 	
 	
+	
+	private void cellAlign() {
+		tableCellAlignment(SwingConstants.CENTER, 0,1);
+		tableCellAlignment(SwingConstants.RIGHT, 2,3);
+	}
+	private void tableCellAlignment(int align, int... idx) {
+		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+		dtcr.setHorizontalAlignment(align); 
+
+		TableColumnModel tcm = table.getColumnModel();
+		for (int i = 0; i < idx.length; i++) {
+			tcm.getColumn(idx[i]).setCellRenderer(dtcr);
+		}
+	}
+	private void cellWidth() {
+		tableSetWidth(100,120,120,120);
+	}
+	private void tableSetWidth(int... width) {
+		TableColumnModel tcm = table.getColumnModel();
+		for (int i = 0; i < width.length; i++) {
+			tcm.getColumn(i).setPreferredWidth(width[i]);
+			;// 컬럼모델 생성해서 가운데 정렬 렌더러 넣어줌
+		}
+	}
+
 	protected String[] getColumn() {
 		return new String[]{"제품코드","제품명","판매정가","판매원가"};
 	}

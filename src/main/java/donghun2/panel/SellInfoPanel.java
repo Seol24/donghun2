@@ -16,10 +16,8 @@ public class SellInfoPanel extends JPanel {
 	private TextFiledPanel pUnPrice;
 	private TextFiledPanel pSellPrice;
 	private TextFiledPanel pDisPrice;
+	private JButton button;
 
-	/**
-	 * Create the panel.
-	 */
 	public SellInfoPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{450, 450, 0};
@@ -46,7 +44,7 @@ public class SellInfoPanel extends JPanel {
 		gbc_pQuantity.gridy = 1;
 		add(pQuantity, gbc_pQuantity);
 		
-		JButton button = new JButton("확인");
+		button = new JButton("확인");
 		GridBagConstraints gbc_button = new GridBagConstraints();
 		gbc_button.insets = new Insets(0, 0, 5, 0);
 		gbc_button.gridx = 1;
@@ -81,5 +79,11 @@ public class SellInfoPanel extends JPanel {
 		add(pDisPrice, gbc_pDisPrice);
 
 	}
+
+	public JButton getButton() {
+		return button;
+	}
+	
+	
 
 }

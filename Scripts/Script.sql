@@ -70,3 +70,13 @@ ALTER TABLE donghun2.saleinfo
 		FOREIGN KEY (ccode)	REFERENCES donghun2.customer (code);
 
 delete from customer where code = 1;
+
+
+insert into product values 
+('P001','아메리카노',3000,1000),
+('P002','카푸치노',4000,2000),
+('P003','카페모카',5000,25000),
+('P004','마끼아또',6000,3000);
+
+select * from product;
+

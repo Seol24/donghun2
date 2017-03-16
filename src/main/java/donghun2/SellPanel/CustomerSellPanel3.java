@@ -42,6 +42,12 @@ public class CustomerSellPanel3 extends JPanel implements ActionListener {
 		add(pGrade);
 
 	}
+	
+
+	public JButton getBtnConfirm() {
+		return btnConfirm;
+	}
+
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnConfirm) {

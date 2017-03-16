@@ -15,9 +15,11 @@ public class EmployeeSellPanel extends JPanel implements ActionListener {
 	private TextFiledPanel pName;
 	private TextFiledPanel pGrade;
 
-	/**
-	 * Create the panel.
-	 */
+	
+	public JButton getBtnConfirm() {
+		return btnConfirm;
+	}
+
 	public EmployeeSellPanel() {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
