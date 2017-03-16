@@ -7,7 +7,7 @@ import java.util.Vector;
 import donghun2.dto.Employee;
 
 public interface Dao<T> {
-	int insertItem(T item);
+	int replaceItem(T item);
 	Vector<T> selectItemByAll();
 	T getObject(ResultSet rs) throws SQLException;
 	T selectItemByNo(T item);	//이거 맞춰야됌

@@ -12,37 +12,11 @@ import donghun2.jdbc.DBCon;
 public class DaoEmployee implements Dao<Employee> {
 	private static DaoEmployee instance = new DaoEmployee();
 
-	public DaoEmployee() {}
+	public DaoEmployee() {
+	}
 
 	public static DaoEmployee getInstance() {
 		return instance;
-	}
-
-	@Override
-	public int insertItem(Employee item) {
-		String sql = "insert into employee(code,name,grade) values(?,?,?)";
-
-		DBCon dbCon = new DBCon();
-		Connection connection = dbCon.getConnection();
-		PreparedStatement pstmt = null;
-		try {
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setString(1, item.getCode());
-			pstmt.setString(2, item.getName());
-			pstmt.setString(3, item.getGrade());
-			int res = pstmt.executeUpdate();
-			System.out.println("insert : " + res);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				pstmt.close();
-				dbCon.Close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return 0;
 	}
 
 	@Override
@@ -95,7 +69,7 @@ public class DaoEmployee implements Dao<Employee> {
 
 	@Override
 	public Employee selectItemByNo(Employee item) {
-		String sql = "select name,grade from employee where code = ?";
+		String sql = "select code,name,grade from employee where code = ?";
 		DBCon dbCon = new DBCon();
 		Connection connection = dbCon.getConnection();
 		PreparedStatement pstmt = null;
@@ -165,5 +139,33 @@ public class DaoEmployee implements Dao<Employee> {
 			dbCon.Close();
 		}
 		return res;
+	}
+
+	@Override
+	public int replaceItem(Employee item) {
+
+		String sql = "replace into employee(code,name,grade) values(?,?,?)";
+
+		DBCon dbCon = new DBCon();
+		Connection connection = dbCon.getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1, item.getCode());
+			pstmt.setString(2, item.getName());
+			pstmt.setString(3, item.getGrade());
+			int res = pstmt.executeUpdate();
+			System.out.println("insert : " + res);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				dbCon.Close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return 0;
 	}
 }

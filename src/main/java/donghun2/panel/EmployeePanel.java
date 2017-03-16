@@ -1,5 +1,6 @@
 package donghun2.panel;
 
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.util.Vector;
 
@@ -21,7 +22,6 @@ public class EmployeePanel extends JPanel{
 	private TextFiledPanel pName;
 	private ComboPanel<String> pGrade;
 
-	
 	public EmployeePanel() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -60,6 +60,18 @@ public class EmployeePanel extends JPanel{
 		pName.setTfValue("");
 		pGrade.setSelectedItem("");;
 	}
+	public boolean isEmpty(){
+	      boolean result = false;
+	      for(Component c : getComponents()){
+	         if(c instanceof TextFiledPanel){
+	            TextFiledPanel tfp =(TextFiledPanel)c;
+	            if(tfp.isEmpty()){
+	               return true;
+	            }
+	         }
+	      }
+	      return false;
+	   }
 }
 
 
