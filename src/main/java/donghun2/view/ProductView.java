@@ -16,9 +16,11 @@ import donghun2.dao.DaoProduct;
 import donghun2.dto.Customer;
 import donghun2.dto.Product;
 import donghun2.panel.ProductPanel;
+import donghun2.table.CustomerTable;
 import donghun2.table.ProductTable;
+import java.awt.event.ActionListener;
 
-public class ProductView extends JFrame {
+public class ProductView extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton btnSave;
@@ -49,30 +51,38 @@ public class ProductView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
-		
-		ProductPanel pProduct = new ProductPanel();
+
+		pProduct = new ProductPanel();
 		contentPane.add(pProduct);
-		
+
 		JPanel pBtn = new JPanel();
 		contentPane.add(pBtn);
 		pBtn.setLayout(new GridLayout(0, 3, 0, 0));
-		
-		JButton btnSave = new JButton("저장");
+
+		btnSave = new JButton("저장");
+		btnSave.addActionListener(this);
 		pBtn.add(btnSave);
-		
-		JButton btnDele = new JButton("삭제");
+
+		btnDele = new JButton("삭제");
+		btnDele.addActionListener(this);
 		pBtn.add(btnDele);
-		
-		JButton btnSearch = new JButton("검색");
+
+		btnSearch = new JButton("검색");
+		btnSearch.addActionListener(this);
 		pBtn.add(btnSearch);
 		
-		ProductTable pt = new ProductTable();
-		pt.setVisible(true);
-
 		pTable = new ProductTable();
 		contentPane.add(pTable);
 		pTable.setVisible(true);
+		
+		
+		pProduct.clear();
 	}
+
+	public void setDao(DaoProduct dao) {
+		this.dao = dao;
+	}
+	
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnSearch) {
@@ -85,6 +95,7 @@ public class ProductView extends JFrame {
 			actionPerformedBtnSave(e);
 		}
 	}
+	
 	protected void actionPerformedBtnSave(ActionEvent e) {
 		if(pProduct.isEmpty()){
 			JOptionPane.showMessageDialog(null, "공백이 존재");
@@ -104,9 +115,8 @@ public class ProductView extends JFrame {
 		pProduct.clear();
 		pTable.loadData();
 	}
-
 	protected void actionPerformedBtnDele(ActionEvent e) {
-		if(pProduct.isEmpty()){
+		if(pProduct.pCode.isEmpty()){
 			JOptionPane.showMessageDialog(null, "공백이 존재");
 			return;
 		}
@@ -117,8 +127,8 @@ public class ProductView extends JFrame {
 			JOptionPane.showMessageDialog(null, "삭제 되었습니다");
 		}
 		pProduct.clear();
+		pTable.loadData();
 	}
-	
 	protected void actionPerformedBtnSearch(ActionEvent e) {
 		Product res = DaoProduct.getInstance().selectItemByNo(pProduct.getObject());
 		if(res == null){

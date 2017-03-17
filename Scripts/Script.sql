@@ -69,7 +69,6 @@ ALTER TABLE donghun2.saleinfo
 	ADD CONSTRAINT FK_customer_TO_saleinfo
 		FOREIGN KEY (ccode)	REFERENCES donghun2.customer (code);
 
-delete from customer where code = 1;
 
 
 insert into product values 

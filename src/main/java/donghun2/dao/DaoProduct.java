@@ -106,7 +106,7 @@ public class DaoProduct implements Dao<Product> {
 
 	@Override
 	public int deleteItem(Product item) {
-		String sql = "delete from Customer where code = ?";
+		String sql = "delete from Product where code = ?";
 		DBCon dbCon = new DBCon();
 		Connection connection = dbCon.getConnection();
 		PreparedStatement pstmt = null;
