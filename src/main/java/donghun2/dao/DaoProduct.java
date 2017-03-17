@@ -102,7 +102,42 @@ public class DaoProduct implements Dao<Product> {
 			}
 			return product;
 	}
+	
+	public Product selectItemByNoForSellInfo(Product item) {
+		String sql = "select code,name,saleprice from product where code=?";
+		DBCon dbCon = new DBCon();
+		Connection connection = dbCon.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Product product = null;
+			try {
+				pstmt = connection.prepareStatement(sql);
+				pstmt.setString(1, item.getCode());
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					product = getObjectInfo(rs);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					rs.close();
+					pstmt.close();
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return product;
+	}
+	
 
+	private Product getObjectInfo(ResultSet rs) throws SQLException {
+		String code = rs.getString("code");
+		String name = rs.getString("name");
+		int salePrice = rs.getInt("salePrice");
+		return new Product(code, name, salePrice);
+	}
 
 	@Override
 	public int deleteItem(Product item) {
