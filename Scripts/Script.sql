@@ -43,14 +43,17 @@ COMMENT '거래처';
 ALTER TABLE donghun2.customer
 	ADD CONSTRAINT PK_customer PRIMARY KEY (code);
 
+DROP TABLE FROM saleinfo;
 -- 거래내역
 CREATE TABLE donghun2.saleinfo (
 	ecode     CHAR(4) NOT NULL COMMENT '사원코드',
 	pcode     CHAR(4) NOT NULL COMMENT '제품코드', 
 	ccode     CHAR(4) NOT NULL COMMENT '거래처코드', 
+	saleDate  DATE    NOT NULL COMMENT '거래일자' ,
 	quantity  INT     NOT NULL COMMENT '판매수량', 
 	unitprice INT     NOT NULL COMMENT '판매단가', 
-	saleDate  DATE    NOT NULL COMMENT '거래일자' 
+	sellprice INT     NOT NULL COMMENT '판매금액', 
+	disprice INT     NOT NULL COMMENT '할인금액'
 )
 COMMENT '거래내역';
 

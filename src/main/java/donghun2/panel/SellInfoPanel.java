@@ -17,6 +17,8 @@ public class SellInfoPanel extends JPanel {
 	private TextFiledPanel pSellPrice;
 	private TextFiledPanel pDisPrice;
 	private JButton button;
+	
+	
 
 	public SellInfoPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();

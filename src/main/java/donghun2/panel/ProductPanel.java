@@ -44,12 +44,6 @@ public class ProductPanel extends JPanel {
 		int origiPrice = Integer.parseInt(pOrigiPrice.getTfValue());
 		return new Product(code, name, salePrice, origiPrice);
 	}
-	public Product getObjectSearch(){
-		String code = pCode.getTfValue();
-		String name = pName.getTfValue();
-		return new Product(code, name);
-	}
-	
 	
 	public void setObject(Product item){
 		pCode.setTfValue(item.getCode());

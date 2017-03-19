@@ -3,80 +3,36 @@ package donghun2.dto;
 import java.util.Date;
 
 public class SaleInfo {
-	private String ecode;
-	private String ccode;
-	private String pcode;
+	private Employee employee;
+	private Customer customer;
+	private Product product;
+	private Date saleDate;
 	private int quantity;
 	private int unitprice;
-	private Date saleDate;
+	private int sellprice;
+	private int disprice;
 	
+	
+	
+	public SaleInfo(Employee employee, Customer customer, Product product, Date saleDate, int quantity, int unitprice,
+			int sellprice, int disprice) {
+		super();
+		this.employee = employee;
+		this.customer = customer;
+		this.product = product;
+		this.saleDate = saleDate;
+		this.quantity = quantity;
+		this.unitprice = unitprice;
+		this.sellprice = sellprice;
+		this.disprice = disprice;
+	}
+
+
+
 	public SaleInfo() {
 	}
-
-	public SaleInfo(String ecode, String ccode, String pcode, int quantity, int unitprice, Date saleDate) {
-		this.ecode = ecode;
-		this.ccode = ccode;
-		this.pcode = pcode;
-		this.quantity = quantity;
-		this.unitprice = unitprice;
-		this.saleDate = saleDate;
-	}
-
-	public String getEcode() {
-		return ecode;
-	}
-
-	public String getCcode() {
-		return ccode;
-	}
-
-	public String getPcode() {
-		return pcode;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public int getUnitprice() {
-		return unitprice;
-	}
-
-	public Date getSaleDate() {
-		return saleDate;
-	}
-
-	public void setEcode(String ecode) {
-		this.ecode = ecode;
-	}
-
-	public void setCcode(String ccode) {
-		this.ccode = ccode;
-	}
-
-	public void setPcode(String pcode) {
-		this.pcode = pcode;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public void setUnitprice(int unitprice) {
-		this.unitprice = unitprice;
-	}
-
-	public void setSaleDate(Date saleDate) {
-		this.saleDate = saleDate;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("ecode=%s, ccode=%s, pcode=%s, quantity=%s, unitprice=%s, saleDate=%s",
-							ecode, ccode, pcode, quantity, unitprice, saleDate);
-	}
+	
 	
 	
 	
 }
-

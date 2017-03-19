@@ -9,9 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import donghun2.SellPanel.CustomerSellPanel3;
-import donghun2.SellPanel.EmployeeSellPanel;
-import donghun2.SellPanel.ProductSellPanel;
 import donghun2.dao.DaoCustomer;
 import donghun2.dao.DaoEmployee;
 import donghun2.dao.DaoProduct;
@@ -36,11 +33,12 @@ public class SellInfoView extends JFrame implements ActionListener {
 	private JButton btnOK;
 	private CustomerPanel panel;
 	private JPanel pP;
-	private ProductSellPanel pProduct;
+	private ProductPanel pProduct;
 	private JButton btnOK2;
 	private JPanel pC;
 	private CustomerPanel pCustomer;
 	private JButton btnOK3;
+	private JPanel pProduct1;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -79,12 +77,15 @@ public class SellInfoView extends JFrame implements ActionListener {
 		contentPane.add(pP);
 		pP.setLayout(new BoxLayout(pP, BoxLayout.X_AXIS));
 		
-		pProduct = new ProductSellPanel();
+		pProduct = new ProductPanel();
 		pP.add(pProduct);
+		pProduct.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		btnOK2 = new JButton("확인");
 		btnOK2.addActionListener(this);
 		pP.add(btnOK2);
+
+		pProduct.clear();
 		
 		pC = new JPanel();
 		contentPane.add(pC);
