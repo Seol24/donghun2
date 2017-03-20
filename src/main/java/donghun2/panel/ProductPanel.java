@@ -11,12 +11,18 @@ import java.awt.FlowLayout;
 import erp_myframework.TextFiledPanel;
 
 public class ProductPanel extends JPanel {
-	public TextFiledPanel pCode;
-	public TextFiledPanel pName;
-	public TextFiledPanel pSalePrice;
-	public TextFiledPanel pOrigiPrice;
+	private static final ProductPanel instance = new ProductPanel();
+	public static ProductPanel getInstance() {return instance;}
+	
+	
+	
+	
+	private TextFiledPanel pCode;
+	private TextFiledPanel pName;
+	private TextFiledPanel pSalePrice;
+	private TextFiledPanel pOrigiPrice;
 
-	public ProductPanel() {
+	private ProductPanel() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		pCode = new TextFiledPanel();
@@ -37,6 +43,18 @@ public class ProductPanel extends JPanel {
 
 	}
 	
+	public TextFiledPanel getpCode() {
+		return pCode;
+	}
+	public TextFiledPanel getpName() {
+		return pName;
+	}
+	public TextFiledPanel getpSalePrice() {
+		return pSalePrice;
+	}
+	public TextFiledPanel getpOrigiPrice() {
+		return pOrigiPrice;
+	}
 	public Product getObject(){
 		String code = pCode.getTfValue();
 		String name = pName.getTfValue();

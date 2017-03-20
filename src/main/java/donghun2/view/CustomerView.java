@@ -13,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 import donghun2.dao.DaoCustomer;
 import donghun2.dto.Customer;
 import donghun2.panel.CustomerPanel;
+import donghun2.panel.ProductPanel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import donghun2.table.CustomerTable;
@@ -48,7 +50,8 @@ public class CustomerView extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
-		pCustomer = new CustomerPanel();
+		new CustomerPanel();
+		pCustomer = CustomerPanel.getInstance();
 		contentPane.add(pCustomer);
 		
 		pbtn = new JPanel();

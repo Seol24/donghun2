@@ -3,9 +3,39 @@ package donghun2.dto;
 import erp_myframework.ComboPanel;
 
 public class Customer {
+	
+	public static final int L = 4;
+	public static final int M = 3;
+	public static final int S = 2;
+	
 	private String code;
 	private String name;
 	private String grade;
+	
+	private Customer() {}
+	
+	public Customer(String code, String name) {
+		this.code = code;
+		this.name = name;
+	}
+	public Customer(String code, String name, String grade) {
+		this.code = code;
+		this.name = name;
+		this.grade = grade;
+	}
+	
+	public static int getL() {
+		return L;
+	}
+
+	public static int getM() {
+		return M;
+	}
+
+	public static int getS() {
+		return S;
+	}
+
 	public String getCode() {
 		return code;
 	}
@@ -19,27 +49,18 @@ public class Customer {
 		this.name = name;
 	}
 	
-	
 	public String getGrade() {
 		return grade;
 	}
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	private Customer() {}
+	
 	@Override
 	public String toString() {
 		return String.format("Customer [code=%s, name=%s]", code, name);
 	}
-	public Customer(String code, String name) {
-		this.code = code;
-		this.name = name;
-	}
-	public Customer(String code, String name, String grade) {
-		this.code = code;
-		this.name = name;
-		this.grade = grade;
-	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

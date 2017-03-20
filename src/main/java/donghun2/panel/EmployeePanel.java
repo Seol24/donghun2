@@ -18,11 +18,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class EmployeePanel extends JPanel{
+	private static final EmployeePanel instance = new EmployeePanel();
+	public static EmployeePanel getInstance() {return instance;}
+	
 	private TextFiledPanel pCode;
 	private TextFiledPanel pName;
 	private ComboPanel<String> pGrade;
 
-	public EmployeePanel() {
+	private EmployeePanel() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		pCode = new TextFiledPanel();
@@ -43,6 +46,15 @@ public class EmployeePanel extends JPanel{
 		pGrade.setcomboData(list);
 		add(pGrade);
 
+	}
+	public TextFiledPanel getpCode() {
+		return pCode;
+	}
+	public TextFiledPanel getpName() {
+		return pName;
+	}
+	public ComboPanel<String> getpGrade() {
+		return pGrade;
 	}
 	public Employee getObject(){
 		String code = pCode.getTfValue();

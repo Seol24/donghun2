@@ -1,17 +1,38 @@
 package donghun2.dto;
 
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Vector;
+
+
 public class Employee {
+
+	public static final int A = 3;
+	public static final int B = 2;
+	public static final int C = 1;
+	
 	private String code;
 	private String name;
 	private String grade;
 
-	public Employee() {
-	}
+	public Employee() {}
 
 	public Employee(String code, String name, String grade) {
 		this.code = code;
 		this.name = name;
 		this.grade = grade;
+	}
+	
+	public static int getA() {
+		return A;
+	}
+
+	public static int getB() {
+		return B;
+	}
+
+	public static int getC() {
+		return C;
 	}
 
 	public String getCode() {

@@ -1,24 +1,31 @@
 package donghun2.panel;
 
-import javax.swing.JPanel;
-import java.awt.GridBagLayout;
+import java.awt.Component;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import erp_myframework.TextFiledPanel;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
+import javax.swing.JPanel;
+
+import donghun2.dto.Product;
+import donghun2.dto.SellInfo;
+import erp_myframework.TextFiledPanel;
 
 public class SellInfoPanel extends JPanel {
+	private static final SellInfoPanel instance = new SellInfoPanel();
+	public static SellInfoPanel getInstance() {return instance;}
+	
 	private TextFiledPanel pSaleDate;
 	private TextFiledPanel pQuantity;
 	private TextFiledPanel pUnPrice;
 	private TextFiledPanel pSellPrice;
 	private TextFiledPanel pDisPrice;
-	private JButton button;
-	
-	
+	private JButton btnOK;
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	public SellInfoPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -46,12 +53,12 @@ public class SellInfoPanel extends JPanel {
 		gbc_pQuantity.gridy = 1;
 		add(pQuantity, gbc_pQuantity);
 		
-		button = new JButton("확인");
-		GridBagConstraints gbc_button = new GridBagConstraints();
-		gbc_button.insets = new Insets(0, 0, 5, 0);
-		gbc_button.gridx = 1;
-		gbc_button.gridy = 1;
-		add(button, gbc_button);
+		btnOK = new JButton("확인");
+		GridBagConstraints gbc_btnOK = new GridBagConstraints();
+		gbc_btnOK.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOK.gridx = 1;
+		gbc_btnOK.gridy = 1;
+		add(btnOK, gbc_btnOK);
 		
 		pUnPrice = new TextFiledPanel();
 		pUnPrice.setTitle("판매단가");
@@ -82,9 +89,53 @@ public class SellInfoPanel extends JPanel {
 
 	}
 
-	public JButton getButton() {
-		return button;
+	public SellInfo getObject(){
+		Date saleDate = null;
+		try {saleDate = sdf.parse(pSaleDate.getTfValue());
+		} catch (ParseException e) {e.printStackTrace();}
+		int quantity = Integer.parseInt(pQuantity.getTfValue());
+		int unitprice = Integer.parseInt(pUnPrice.getTfValue());
+		int sellprice = Integer.parseInt(pSellPrice.getTfValue());
+		int disprice = Integer.parseInt(pDisPrice.getTfValue());
+		
+		return new SellInfo(saleDate, quantity, unitprice, sellprice, disprice);
 	}
+	
+	public void setObject(SellInfo item){
+		pSaleDate.setTfValue(String.format("%tF", item.getSaleDate()));
+		pQuantity.setTfValue(String.valueOf(item.getQuantity()));
+		pUnPrice.setTfValue(String.valueOf(item.getUnitprice()));
+		pSellPrice.setTfValue(String.valueOf(item.getSellprice()));
+		pDisPrice.setTfValue(String.valueOf(item.getDisprice()));
+	}
+
+	public void clear(){
+		pSaleDate.setTfValue(sdf.format(new Date()));
+		pQuantity.setTfValue("0");
+		pUnPrice.setTfValue("0");
+		pSellPrice.setTfValue("0");
+		pDisPrice.setTfValue("0");
+	}
+	public boolean isEmpty(){
+		boolean result = false;
+		for(Component c : getComponents()){
+			if(c instanceof TextFiledPanel){
+				TextFiledPanel tfp =(TextFiledPanel)c;
+				if(tfp.isEmpty()){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public JButton getBtnOk() {
+		return btnOK;
+	}
+	
+	
+	
+	
 	
 	
 

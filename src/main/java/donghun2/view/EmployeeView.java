@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import donghun2.dao.DaoEmployee;
 import donghun2.dto.Employee;
 import donghun2.panel.EmployeePanel;
+import donghun2.panel.ProductPanel;
 
 @SuppressWarnings("serial")
 public class EmployeeView extends JFrame implements ActionListener {
@@ -47,7 +48,8 @@ public class EmployeeView extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
-		pEmployee = new EmployeePanel();
+		new EmployeePanel();
+		pEmployee = EmployeePanel.getInstance();
 		pEmployee.setToolTipText("");
 		contentPane.add(pEmployee);
 		

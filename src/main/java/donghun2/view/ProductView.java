@@ -52,7 +52,8 @@ public class ProductView extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
-		pProduct = new ProductPanel();
+		new ProductPanel();
+		pProduct = ProductPanel.getInstance();
 		contentPane.add(pProduct);
 
 		JPanel pBtn = new JPanel();
@@ -101,7 +102,7 @@ public class ProductView extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "공백이 존재");
 			return;
 		}
-		if(Integer.parseInt(pProduct.pSalePrice.getTfValue())<Integer.parseInt(pProduct.pOrigiPrice.getTfValue())){
+		if(Integer.parseInt(pProduct.getpSalePrice().getTfValue())<Integer.parseInt(pProduct.getpOrigiPrice().getTfValue())){
 			JOptionPane.showMessageDialog(null, "정가보다 원가가 클 수 없음");
 			return;
 		}
@@ -116,7 +117,7 @@ public class ProductView extends JFrame implements ActionListener {
 		pTable.loadData();
 	}
 	protected void actionPerformedBtnDele(ActionEvent e) {
-		if(pProduct.pCode.isEmpty()){
+		if(pProduct.getpCode().isEmpty()){
 			JOptionPane.showMessageDialog(null, "공백이 존재");
 			return;
 		}

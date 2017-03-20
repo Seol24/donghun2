@@ -7,10 +7,14 @@ import java.util.Vector;
 import javax.swing.JPanel;
 
 import donghun2.dto.Customer;
+import donghun2.dto.Employee;
 import erp_myframework.ComboPanel;
 import erp_myframework.TextFiledPanel;
 
 public class CustomerPanel extends JPanel {
+	private static final CustomerPanel instance = new CustomerPanel();
+	public static CustomerPanel getInstance() {return instance;}
+	
 	private TextFiledPanel pCode;
 	private TextFiledPanel pName;
 	private ComboPanel pGrade;
@@ -18,7 +22,7 @@ public class CustomerPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CustomerPanel() {
+	private CustomerPanel() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		pCode = new TextFiledPanel();
@@ -42,6 +46,17 @@ public class CustomerPanel extends JPanel {
 		add(pGrade);
 
 	}
+	public TextFiledPanel getpCode() {
+		return pCode;
+	}
+	public TextFiledPanel getpName() {
+		return pName;
+	}
+	public ComboPanel getpGrade() {
+		return pGrade;
+	}
+
+
 	public Customer getObject(){
 		String code = pCode.getTfValue();
 		String name = pName.getTfValue();

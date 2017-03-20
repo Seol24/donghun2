@@ -1,6 +1,10 @@
 package donghun2.view;
 
 import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,33 +16,33 @@ import javax.swing.border.EmptyBorder;
 import donghun2.dao.DaoCustomer;
 import donghun2.dao.DaoEmployee;
 import donghun2.dao.DaoProduct;
+import donghun2.dao.DaoSellInfo;
 import donghun2.dto.Customer;
 import donghun2.dto.Employee;
 import donghun2.dto.Product;
-import donghun2.panel.SellInfoPanel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import donghun2.panel.EmployeePanel;
-import java.awt.GridLayout;
-import donghun2.panel.ProductPanel;
+import donghun2.dto.SellInfo;
 import donghun2.panel.CustomerPanel;
+import donghun2.panel.EmployeePanel;
+import donghun2.panel.ProductPanel;
+import donghun2.panel.SellInfoPanel;
+import erp_myframework.TextFiledPanel;
 
 public class SellInfoView extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton btnSave;
-	private SellInfoPanel pSellInfo;
+	private SellInfoPanel pS;
+	private JButton btnOK;
 	private JPanel pE;
 	private EmployeePanel pEmployee;
-	private JButton btnOK;
-	private CustomerPanel panel;
+	private JButton btnOK1;
 	private JPanel pP;
 	private ProductPanel pProduct;
 	private JButton btnOK2;
 	private JPanel pC;
 	private CustomerPanel pCustomer;
 	private JButton btnOK3;
-	private JPanel pProduct1;
+	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -65,19 +69,20 @@ public class SellInfoView extends JFrame implements ActionListener {
 		contentPane.add(pE);
 		pE.setLayout(new BoxLayout(pE, BoxLayout.X_AXIS));
 
-		pEmployee = new EmployeePanel();
+		new EmployeePanel();
+		pEmployee = EmployeePanel.getInstance();
 		pE.add(pEmployee);
 		pEmployee.setLayout(new GridLayout(1, 0, 0, 0));
 
-		btnOK = new JButton("확인");
-		btnOK.addActionListener(this);
-		pE.add(btnOK);
+		btnOK1 = new JButton("확인");
+		btnOK1.addActionListener(this);
+		pE.add(btnOK1);
 		
 		pP = new JPanel();
 		contentPane.add(pP);
 		pP.setLayout(new BoxLayout(pP, BoxLayout.X_AXIS));
 		
-		pProduct = new ProductPanel();
+		pProduct = ProductPanel.getInstance();
 		pP.add(pProduct);
 		pProduct.setLayout(new GridLayout(1, 0, 0, 0));
 		
@@ -91,72 +96,80 @@ public class SellInfoView extends JFrame implements ActionListener {
 		contentPane.add(pC);
 		pC.setLayout(new BoxLayout(pC, BoxLayout.X_AXIS));
 		
-		pCustomer = new CustomerPanel();
+		new CustomerPanel();
+		pCustomer = CustomerPanel.getInstance();
 		pC.add(pCustomer);
 		pCustomer.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		btnOK3 = new JButton("확인");
 		btnOK3.addActionListener(this);
 		pC.add(btnOK3);
+		
+		
+		pS = new SellInfoPanel();
+		btnOK = pS.getBtnOk();
+		btnOK.addActionListener(this);
+		contentPane.add(pS);
 
-		pSellInfo = new SellInfoPanel();
-		contentPane.add(pSellInfo);
-
+		pS.clear();
+		
+		
 		JPanel pBtn = new JPanel();
 		contentPane.add(pBtn);
-
 		btnSave = new JButton("저장");
 		btnSave.addActionListener(this);
 		pBtn.add(btnSave);
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnOK) {
+			actionPerformedBtnOK(e);
+		}
 		if (e.getSource() == btnOK3) {
 			actionPerformedBtnOK3(e);
 		}
 		if (e.getSource() == btnOK2) {
 			actionPerformedBtnOK2(e);
 		}
-		if (e.getSource() == btnOK) {
-			actionPerformedBtnOK(e);
+		if (e.getSource() == btnOK1) {
+			actionPerformedBtnOK1(e);
 		}
-		if (e.getSource() == pSellInfo.getButton()) {
-			actionPerformedBtnConfirmE(e);
-		}
-
+		
 		if (e.getSource() == btnSave) {
 			actionPerformedBtnSave(e);
 		}
 	}
+	
 
-	protected void actionPerformedBtnConfirmS(ActionEvent e) {
-
+	private void actionPerformedBtnSave(ActionEvent e) {
+		 Employee eitem = pEmployee.getObject();
+		 Product pitem = pProduct.getObject();
+		 Customer citem = pCustomer.getObject();
+		if (eitem==null || pitem==null || citem==null) {
+			JOptionPane.showMessageDialog(null, "검색결과가 없습니다");
+		}
+		
+	}
+	
+	private void actionPerformedBtnOK(ActionEvent e) {
+		int salePrice = Integer.parseInt(pProduct.getpSalePrice().getTfValue()); 	//판매정가
+		System.out.println(salePrice);
+		String egrade = String.valueOf(pEmployee.getpGrade().getSelectItem()); //사원등급
+		String cgrade = String.valueOf(pCustomer.getpGrade().getSelectItem()); //거래처등급
+		int edispercentage;
+		if(egrade.equals("A")){
+			edispercentage = Employee.getA();
+			return;
+		}else if(egrade.equals("B")){
+			edispercentage = Employee.getB();
+			return;
+		}else if(egrade.equals("C")){
+			edispercentage = Employee.getC();
+			return;
+		}
 	}
 
-	protected void actionPerformedBtnConfirmC(ActionEvent e) {
-
-	}
-
-	protected void actionPerformedBtnConfirmP(ActionEvent e) {
-		/*
-		 * if(pProduct.pCode.getTfValue().isEmpty()){
-		 * JOptionPane.showMessageDialog(null, "공백이 존재"); return; } Product code
-		 * = new Product(pProduct.pCode.getTfValue()); Product item =
-		 * DaoProduct.getInstance().selectItemByNo(code); if(item==null){
-		 * JOptionPane.showMessageDialog(null, "데이터 없음"); return; }
-		 * pProduct.setObject(item);
-		 */
-	}
-
-	protected void actionPerformedBtnConfirmE(ActionEvent e) {
-
-	}
-
-	protected void actionPerformedBtnSave(ActionEvent e) {
-
-	}
-
-	protected void actionPerformedBtnOK(ActionEvent e) {
+	private void actionPerformedBtnOK1(ActionEvent e) {
 		Employee res = DaoEmployee.getInstance().selectItemByNo(pEmployee.getObject());
 		if (res == null) {
 			JOptionPane.showMessageDialog(null, "검색결과가 없습니다");
@@ -165,7 +178,7 @@ public class SellInfoView extends JFrame implements ActionListener {
 			pEmployee.setObject(res);
 		}
 	}
-	protected void actionPerformedBtnOK2(ActionEvent e) {
+	private void actionPerformedBtnOK2(ActionEvent e) {
 		Product res = DaoProduct.getInstance().selectItemByNoForSellInfo(pProduct.getObject());
 		if(res == null){
 			JOptionPane.showMessageDialog(null, "검색결과가 없습니다.");
@@ -177,7 +190,7 @@ public class SellInfoView extends JFrame implements ActionListener {
 			
 		}
 	}
-	protected void actionPerformedBtnOK3(ActionEvent e) {
+	private void actionPerformedBtnOK3(ActionEvent e) {
 		Customer res = DaoCustomer.getInstance().selectItemByNo(pCustomer.getObject());
 		if(res == null){
 			JOptionPane.showMessageDialog(null, "검색결과가 없습니다.");
