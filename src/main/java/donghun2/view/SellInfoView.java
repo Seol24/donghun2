@@ -31,7 +31,7 @@ public class SellInfoView extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JButton btnSave;
-	private SellInfoPanel pS;
+	private SellInfoPanel pSellInfo;
 	private JButton btnOK;
 	private JPanel pE;
 	private EmployeePanel pEmployee;
@@ -69,7 +69,6 @@ public class SellInfoView extends JFrame implements ActionListener {
 		contentPane.add(pE);
 		pE.setLayout(new BoxLayout(pE, BoxLayout.X_AXIS));
 
-		new EmployeePanel();
 		pEmployee = EmployeePanel.getInstance();
 		pE.add(pEmployee);
 		pEmployee.setLayout(new GridLayout(1, 0, 0, 0));
@@ -96,7 +95,6 @@ public class SellInfoView extends JFrame implements ActionListener {
 		contentPane.add(pC);
 		pC.setLayout(new BoxLayout(pC, BoxLayout.X_AXIS));
 		
-		new CustomerPanel();
 		pCustomer = CustomerPanel.getInstance();
 		pC.add(pCustomer);
 		pCustomer.setLayout(new GridLayout(1, 0, 0, 0));
@@ -106,12 +104,12 @@ public class SellInfoView extends JFrame implements ActionListener {
 		pC.add(btnOK3);
 		
 		
-		pS = new SellInfoPanel();
-		btnOK = pS.getBtnOk();
+		pSellInfo = SellInfoPanel.getInstance();
+		btnOK = pSellInfo.getBtnOk();
 		btnOK.addActionListener(this);
-		contentPane.add(pS);
+		contentPane.add(pSellInfo);
 
-		pS.clear();
+		pSellInfo.clear();
 		
 		
 		JPanel pBtn = new JPanel();
@@ -146,36 +144,58 @@ public class SellInfoView extends JFrame implements ActionListener {
 		 Product pitem = pProduct.getObject();
 		 Customer citem = pCustomer.getObject();
 		if (eitem==null || pitem==null || citem==null) {
-			JOptionPane.showMessageDialog(null, "검색결과가 없습니다");
+			JOptionPane.showMessageDialog(null, "공백 존재");
 		}
 		
 	}
 	
 	private void actionPerformedBtnOK(ActionEvent e) {
-		int salePrice = Integer.parseInt(pProduct.getpSalePrice().getTfValue()); 	//판매정가
-		System.out.println(salePrice);
-		String egrade = String.valueOf(pEmployee.getpGrade().getSelectItem()); //사원등급
-		String cgrade = String.valueOf(pCustomer.getpGrade().getSelectItem()); //거래처등급
-		int edispercentage;
-		if(egrade.equals("A")){
-			edispercentage = Employee.getA();
-			return;
-		}else if(egrade.equals("B")){
-			edispercentage = Employee.getB();
-			return;
-		}else if(egrade.equals("C")){
-			edispercentage = Employee.getC();
-			return;
-		}
+		Employee eRes = pEmployee.getObject();
+		Product pRes = pProduct.getObject();
+		Customer cRes = pCustomer.getObject();
+		SellInfo sRes = pSellInfo.getObject();
+		if(eRes == null || pRes == null || cRes ==null || sRes==null){
+			JOptionPane.showMessageDialog(null, "검색결과가 없습니다.");
+			
+		}else{
+			int salePrice = pRes.getSalePrice(); 	//판매정가
+			String egrade = eRes.getGrade(); //사원등급
+			String cgrade = cRes.getGrade(); //거래처등급
+			int dispercentage=0;
+			if(egrade.equals("A")){
+				dispercentage += Employee.getA();
+			}else if(egrade.equals("B")){
+				dispercentage += Employee.getB();
+			}else if(egrade.equals("C")){
+				dispercentage += Employee.getC();
+			}
+			if(cgrade.equals("L")){
+				dispercentage += Customer.getL();
+			}else if(cgrade.equals("M")){
+				dispercentage += Customer.getM();
+			}else if(cgrade.equals("S")){
+				dispercentage += Customer.getS();
+			}
+			
+			int unitPrice = (int) (salePrice*(1-(dispercentage*0.01)));
+			int sellPrice = unitPrice*(pSellInfo.getObject().getQuantity());
+			int disPrice = salePrice*(pSellInfo.getObject().getQuantity())-sellPrice;
+					
+			SellInfo sellinfo = new SellInfo(unitPrice, sellPrice, disPrice);
+			pSellInfo.setObject(sellinfo);
+			System.out.println(sellinfo);
+			JOptionPane.showMessageDialog(null, "검색하였습니다.");
+		}	
 	}
 
 	private void actionPerformedBtnOK1(ActionEvent e) {
 		Employee res = DaoEmployee.getInstance().selectItemByNo(pEmployee.getObject());
-		if (res == null) {
+		if (res == null ) {
 			JOptionPane.showMessageDialog(null, "검색결과가 없습니다");
 		} else {
 			JOptionPane.showMessageDialog(null, "검색하였습니다.");
 			pEmployee.setObject(res);
+			
 		}
 	}
 	private void actionPerformedBtnOK2(ActionEvent e) {

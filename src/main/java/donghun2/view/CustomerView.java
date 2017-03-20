@@ -50,7 +50,6 @@ public class CustomerView extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
-		new CustomerPanel();
 		pCustomer = CustomerPanel.getInstance();
 		contentPane.add(pCustomer);
 		

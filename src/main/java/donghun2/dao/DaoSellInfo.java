@@ -103,7 +103,7 @@ public class DaoSellInfo implements Dao<SellInfo> {
 
 
 	public SellInfo selectItemByNo(Employee item1, Product item2, Customer item3) {
-		String sql = "select saleDate,quantity,unitprice,sellprice,disprice from SellInfo where ecode=? and pcode=? and ccode=?";
+		String sql = "select * from v_totalinfo where ecode=? and pcode=? and ccode=?";
 		DBCon dbCon = new DBCon();
 		Connection connection = dbCon.getConnection();
 		PreparedStatement pstmt = null;
@@ -114,6 +114,7 @@ public class DaoSellInfo implements Dao<SellInfo> {
 			pstmt.setString(1, item1.getCode());
 			pstmt.setString(2, item2.getCode());
 			pstmt.setString(3, item3.getCode());
+			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
 				SellInfo = getObject(rs);

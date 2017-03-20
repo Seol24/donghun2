@@ -29,7 +29,6 @@ public class DaoProduct implements Dao<Product> {
 			pstmt.setString(2, item.getName());
 			pstmt.setInt(3, item.getSalePrice());
 			pstmt.setInt(4, item.getOrigiPrice());
-			System.out.println(pstmt);
 			res = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

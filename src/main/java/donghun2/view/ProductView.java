@@ -52,7 +52,6 @@ public class ProductView extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
-		new ProductPanel();
 		pProduct = ProductPanel.getInstance();
 		contentPane.add(pProduct);
 

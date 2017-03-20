@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import erp_myframework.ComboPanel;
 import erp_myframework.TextFiledPanel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -66,6 +67,9 @@ public class EmployeePanel extends JPanel{
 		pCode.setTfValue(item.getCode());
 		pName.setTfValue(item.getName());
 		pGrade.setSelectedItem(item.getGrade());
+	//	pName.gettF().setEnabled(false); 	//이거하면 공백존재한다고 뜸.
+	//	pGrade.setEnabled(false);	// 어캐 setEnabled 수정못하게 disable하지..
+
 	}
 	public void Clear(){
 		pCode.setTfValue("");

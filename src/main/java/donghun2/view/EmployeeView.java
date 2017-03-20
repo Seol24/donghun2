@@ -48,9 +48,7 @@ public class EmployeeView extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		
-		new EmployeePanel();
 		pEmployee = EmployeePanel.getInstance();
-		pEmployee.setToolTipText("");
 		contentPane.add(pEmployee);
 		
 		pBtn = new JPanel();

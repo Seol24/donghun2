@@ -27,7 +27,7 @@ public class SellInfoPanel extends JPanel {
 	private JButton btnOK;
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-	public SellInfoPanel() {
+	private SellInfoPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{450, 450, 0};
 		gridBagLayout.rowHeights = new int[]{60, 60, 60, 60, 60, 0};
@@ -94,16 +94,10 @@ public class SellInfoPanel extends JPanel {
 		try {saleDate = sdf.parse(pSaleDate.getTfValue());
 		} catch (ParseException e) {e.printStackTrace();}
 		int quantity = Integer.parseInt(pQuantity.getTfValue());
-		int unitprice = Integer.parseInt(pUnPrice.getTfValue());
-		int sellprice = Integer.parseInt(pSellPrice.getTfValue());
-		int disprice = Integer.parseInt(pDisPrice.getTfValue());
-		
-		return new SellInfo(saleDate, quantity, unitprice, sellprice, disprice);
+		return new SellInfo(saleDate, quantity);
 	}
 	
 	public void setObject(SellInfo item){
-		pSaleDate.setTfValue(String.format("%tF", item.getSaleDate()));
-		pQuantity.setTfValue(String.valueOf(item.getQuantity()));
 		pUnPrice.setTfValue(String.valueOf(item.getUnitprice()));
 		pSellPrice.setTfValue(String.valueOf(item.getSellprice()));
 		pDisPrice.setTfValue(String.valueOf(item.getDisprice()));
