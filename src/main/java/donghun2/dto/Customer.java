@@ -1,6 +1,5 @@
 package donghun2.dto;
 
-import erp_myframework.ComboPanel;
 
 public class Customer {
 	

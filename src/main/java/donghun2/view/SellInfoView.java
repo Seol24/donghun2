@@ -145,6 +145,8 @@ public class SellInfoView extends JFrame implements ActionListener {
 		 Customer citem = pCustomer.getObject();
 		if (eitem==null || pitem==null || citem==null) {
 			JOptionPane.showMessageDialog(null, "공백 존재");
+		}else{
+			JOptionPane.showMessageDialog(null, "저장되었습니다.");
 		}
 		
 	}
