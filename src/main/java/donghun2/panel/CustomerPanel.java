@@ -7,7 +7,6 @@ import java.util.Vector;
 import javax.swing.JPanel;
 
 import donghun2.dto.Customer;
-import donghun2.dto.Employee;
 import erp_myframework.ComboPanel;
 import erp_myframework.TextFiledPanel;
 
@@ -26,11 +25,11 @@ public class CustomerPanel extends JPanel {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		pCode = new TextFiledPanel();
-		pCode.setTitle("거래처코드");
+		pCode.setTitle("嫄곕옒泥섏퐫�뱶");
 		add(pCode);
 		
 		pName = new TextFiledPanel();
-		pName.setTitle("거래처명");
+		pName.setTitle("嫄곕옒泥섎챸");
 		add(pName);
 		
 		Vector<String> list = new Vector<>();
@@ -40,7 +39,7 @@ public class CustomerPanel extends JPanel {
 		
 		
 		pGrade = new ComboPanel();
-		pGrade.setTitle("거래처 등급");
+		pGrade.setTitle("嫄곕옒泥� �벑湲�");
 		pGrade.setcomboData(list);
 		
 		add(pGrade);
@@ -75,6 +74,8 @@ public class CustomerPanel extends JPanel {
 		pName.setTfValue("");
 		pGrade.setSelectedItem("");
 	}
+	
+	
 	public boolean isEmpty(){
 		boolean result = false;
 		for(Component c : getComponents()){

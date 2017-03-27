@@ -59,20 +59,20 @@ public class ProductView extends JFrame implements ActionListener {
 		contentPane.add(pBtn);
 		pBtn.setLayout(new GridLayout(0, 3, 0, 0));
 
-		btnSave = new JButton("저장");
+		btnSave = new JButton("���옣");
 		btnSave.addActionListener(this);
 		pBtn.add(btnSave);
 
-		btnDele = new JButton("삭제");
+		btnDele = new JButton("�궘�젣");
 		btnDele.addActionListener(this);
 		pBtn.add(btnDele);
 
-		btnSearch = new JButton("검색");
+		btnSearch = new JButton("寃��깋");
 		btnSearch.addActionListener(this);
 		pBtn.add(btnSearch);
 		
 		pTable = new ProductTable();
-		contentPane.add(pTable);
+		contentPane.add(this);
 		pTable.setVisible(true);
 		
 		
@@ -98,17 +98,17 @@ public class ProductView extends JFrame implements ActionListener {
 	
 	protected void actionPerformedBtnSave(ActionEvent e) {
 		if(pProduct.isEmpty()){
-			JOptionPane.showMessageDialog(null, "공백이 존재");
+			JOptionPane.showMessageDialog(null, "怨듬갚�씠 議댁옱");
 			return;
 		}
 		if(Integer.parseInt(pProduct.getpSalePrice().getTfValue())<Integer.parseInt(pProduct.getpOrigiPrice().getTfValue())){
-			JOptionPane.showMessageDialog(null, "정가보다 원가가 클 수 없음");
+			JOptionPane.showMessageDialog(null, "�젙媛�蹂대떎 �썝媛�媛� �겢 �닔 �뾾�쓬");
 			return;
 		}
-		String msg = "추가됨";
+		String msg = "異붽��맖";
 		Product item = pProduct.getObject();
 		if(DaoProduct.getInstance().selectItemByNo(item)!=null){
-			msg = "데이터가 이미 존재하므로 덮어씀";
+			msg = "�뜲�씠�꽣媛� �씠誘� 議댁옱�븯誘�濡� �뜮�뼱��";
 		}
 		DaoProduct.getInstance().replaceItem(item);
 		JOptionPane.showMessageDialog(null, msg);
@@ -117,14 +117,14 @@ public class ProductView extends JFrame implements ActionListener {
 	}
 	protected void actionPerformedBtnDele(ActionEvent e) {
 		if(pProduct.getpCode().isEmpty()){
-			JOptionPane.showMessageDialog(null, "공백이 존재");
+			JOptionPane.showMessageDialog(null, "怨듬갚�씠 議댁옱");
 			return;
 		}
 		Product item = pProduct.getObject();
 		if(DaoProduct.getInstance().deleteItem(item)==0){
-			JOptionPane.showMessageDialog(null, "삭제할 데이터 없음");
+			JOptionPane.showMessageDialog(null, "�궘�젣�븷 �뜲�씠�꽣 �뾾�쓬");
 		}else{
-			JOptionPane.showMessageDialog(null, "삭제 되었습니다");
+			JOptionPane.showMessageDialog(null, "�궘�젣 �릺�뿀�뒿�땲�떎");
 		}
 		pProduct.clear();
 		pTable.loadData();
@@ -132,9 +132,9 @@ public class ProductView extends JFrame implements ActionListener {
 	protected void actionPerformedBtnSearch(ActionEvent e) {
 		Product res = DaoProduct.getInstance().selectItemByNo(pProduct.getObject());
 		if(res == null){
-			JOptionPane.showMessageDialog(null, "검색결과가 없습니다.");
+			JOptionPane.showMessageDialog(null, "寃��깋寃곌낵媛� �뾾�뒿�땲�떎.");
 		}else{
-			JOptionPane.showMessageDialog(null, "검색하였습니다.");
+			JOptionPane.showMessageDialog(null, "寃��깋�븯���뒿�땲�떎.");
 			pProduct.setObject(res);
 		}
 	}
